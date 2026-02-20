@@ -9,12 +9,8 @@
         <p><strong>{{ site.contact.role }}:</strong> {{ site.contact.name }}</p>
         <p><i class="bi bi-envelope me-2"></i><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
         <p><i class="bi bi-telephone me-2"></i><a href="tel:{{ site.contact.phoneFmt }}">{{ site.contact.phone }}</a></p>
-        {% if pageId == "index" or pageId == "sorgo" %}
-          <p><i class="bi bi-telegram me-2"></i><a href="{{ site.contact.telegramUrl }}" target="_blank" rel="noopener">{{ site.contact.telegram }}</a></p>
-        {% endif %}
-        {% if pageId == "index" %}
-          <p><i class="bi bi-chat-dots me-2"></i><a href="{{ site.contact.maxUrl }}" target="_blank" rel="noopener">Профиль в MAX</a></p>
-        {% endif %}
+        <p><i class="bi bi-telegram me-2"></i><a href="{{ site.contact.telegramUrl }}" target="_blank" rel="noopener">{{ site.contact.telegram }}</a></p>
+        <p><i class="bi bi-chat-dots me-2"></i><a href="{{ site.contact.maxUrl }}" target="_blank" rel="noopener">Профиль в MAX</a></p>
       </div>
 
       {# --- О BSGRO --- #}

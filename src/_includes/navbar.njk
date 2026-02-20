@@ -20,8 +20,11 @@
         {% if pageId == "index" %}
 
           {% for sec in nav.indexSections %}
-            {% if sec.anchor == "#contacts" %}
-              {# Вставляем Агрокультура + Сироп перед Контактами #}
+            {# «О проекте» — затем сразу вставляем страничные ссылки #}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ sec.anchor }}">{{ sec.label }}</a>
+            </li>
+            {% if sec.anchor == "#project" %}
               <li class="nav-item">
                 <a class="nav-link" href="/sorgo/" style="color:var(--clr-green) !important;">Агрокультура сорго</a>
               </li>
@@ -34,9 +37,6 @@
                 </ul>
               </li>
             {% endif %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ sec.anchor }}">{{ sec.label }}</a>
-            </li>
           {% endfor %}
 
         {# ===== INNER PAGES: compact nav ===== #}
