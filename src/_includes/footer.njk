@@ -1,0 +1,50 @@
+{# ===== FOOTER ===== #}
+<footer{% if pageId == "index" %} id="contacts"{% endif %}>
+  <div class="container">
+    <div class="row g-4">
+
+      {# --- Контакты --- #}
+      <div class="col-md-4">
+        <h5><i class="bi bi-envelope-fill me-2"></i>Контакты</h5>
+        <p><strong>{{ site.contact.role }}:</strong> {{ site.contact.name }}</p>
+        <p><i class="bi bi-envelope me-2"></i><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+        <p><i class="bi bi-telephone me-2"></i><a href="tel:{{ site.contact.phoneFmt }}">{{ site.contact.phone }}</a></p>
+        {% if pageId == "index" or pageId == "sorgo" %}
+          <p><i class="bi bi-telegram me-2"></i><a href="{{ site.contact.telegramUrl }}" target="_blank" rel="noopener">{{ site.contact.telegram }}</a></p>
+        {% endif %}
+        {% if pageId == "index" %}
+          <p><i class="bi bi-chat-dots me-2"></i><a href="{{ site.contact.maxUrl }}" target="_blank" rel="noopener">Профиль в MAX</a></p>
+        {% endif %}
+      </div>
+
+      {# --- О BSGRO --- #}
+      <div class="col-md-3">
+        <h5><i class="bi bi-tree-fill me-2"></i>О BSGRO</h5>
+        {% if pageId == "index" %}
+          <p><strong>{{ site.fullName }}</strong></p>
+          <p class="small" style="opacity:0.7;">{{ site.tagline }}</p>
+        {% else %}
+          <p class="small" style="opacity:0.7;">{{ site.fullName }} — {{ site.tagline | lower }}</p>
+        {% endif %}
+      </div>
+
+      {# --- Навигация (зависит от footerGroup) --- #}
+      {% set fLinks = nav.footerLinks[footerGroup] %}
+      <div class="col-md-2">
+        <h5><i class="bi {{ fLinks.icon }} me-2"></i>{{ fLinks.heading }}</h5>
+        {% for link in fLinks.links %}
+          <p><a href="{{ link.url }}">{{ link.label }}</a></p>
+        {% endfor %}
+      </div>
+
+      {# --- QR / vCard --- #}
+      <div class="col-md-3 qr-card">
+        <h5 style="color:var(--clr-lime);">Визитка</h5>
+        <img src="/{{ site.qr.image }}" alt="QR код визитки Р. Бабенко" width="160" height="160" loading="lazy">
+        <br><a href="/{{ site.contact.vcardFile }}" download="Babenko_Roman.vcf" class="vcard-btn"><i class="bi bi-download me-1"></i>Скачать vCard</a>
+      </div>
+
+    </div>
+    <div class="copy text-center">{{ site.copyright }} © {% year %}</div>
+  </div>
+</footer>
