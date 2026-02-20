@@ -123,7 +123,6 @@ section:nth-child(even) { background: var(--clr-bg-alt); }
   border-radius: var(--radius);
   box-shadow: 0 4px 20px var(--clr-card-shadow);
   transition: transform var(--transition), box-shadow var(--transition);
-  height: 100%;
   overflow: hidden;
 }
 .card-custom:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(13,59,102,0.12); }
@@ -148,6 +147,10 @@ section:nth-child(even) { background: var(--clr-bg-alt); }
 .card-icon.terra { background: var(--clr-terra); }
 
 /* ===== TABLES ===== */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .table-bsgro { border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 12px var(--clr-card-shadow); }
 .table-bsgro thead th {
   background: var(--clr-navy);
@@ -163,8 +166,57 @@ section:nth-child(even) { background: var(--clr-bg-alt); }
   padding: 0.75rem 1rem;
   border-color: #E8ECF0;
   font-size: 0.9rem;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 .table-bsgro tbody tr:hover { background: var(--clr-bg-alt); }
+
+/* Comparison table — full-width with min-width for horizontal scroll */
+.comparison-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.comparison-table th,
+.comparison-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #dee2e6;
+  text-align: left;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.comparison-table thead th {
+  background: var(--clr-navy);
+  color: var(--clr-white);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-color: var(--clr-navy);
+}
+.comparison-table tbody tr:hover { background: var(--clr-bg-alt); }
+.comparison-table strong { color: var(--clr-green-deep); }
+
+/* Highlight stat block (×2, etc.) */
+.highlight-stat {
+  margin: 1rem 0 0;
+  text-align: center;
+}
+.highlight-stat .big {
+  display: block;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--clr-green);
+  line-height: 1.1;
+}
+.highlight-stat .label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+}
 
 /* ===== BIG STAT CALLOUT ===== */
 .stat-card {
@@ -352,14 +404,6 @@ footer .copy { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 2rem
 
 /* ===== RESPONSIVE ===== */
 
-/* Medium-large screens: prevent table/card overlap in side-by-side layouts */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .table-bsgro .table th,
-  .table-bsgro .table td { font-size: 0.78rem; padding: 0.45rem 0.5rem; }
-  .card-custom { overflow-wrap: break-word; word-wrap: break-word; }
-  .card-custom .small { font-size: 0.78rem; }
-}
-
 @media (max-width: 991px) {
   .navbar-brand img { height: 40px; }
   .nav-link { font-size: 0.78rem; padding: 0.4rem 0.5rem !important; }
@@ -419,12 +463,13 @@ footer .copy { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 2rem
     margin-bottom: 0.15rem;
     max-width: 100%;
   }
-  /* Hide table-responsive scroll on mobile for card tables */
+  /* Card-tables only: remove box/radius so cards render freely */
   .table-bsgro:has(.table-cards) { overflow: visible; box-shadow: none; border-radius: 0; }
   .table-responsive:has(.table-cards) { overflow: visible; }
-  /* Fallback for browsers without :has() */
-  .table-bsgro { overflow: visible; box-shadow: none; }
-  .table-responsive { overflow: visible; }
+  /* comparison-table stays scrollable via .table-responsive */
+  .comparison-table { font-size: 0.9rem; }
+  .comparison-table th,
+  .comparison-table td { padding: 0.6rem 0.8rem; }
 }
 
 @media (max-width: 575px) {
@@ -432,6 +477,10 @@ footer .copy { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 2rem
   section { padding: 3rem 0; }
   .bar-label { width: 80px; font-size: 0.72rem; }
   .stat-number { font-size: 2rem; }
+  .comparison-table { font-size: 0.85rem; }
+  .comparison-table th,
+  .comparison-table td { padding: 0.5rem 0.6rem; }
+  .highlight-stat .big { font-size: 2.2rem; }
 }
 
 /* ===== SORGO PAGE EXTRAS ===== */
