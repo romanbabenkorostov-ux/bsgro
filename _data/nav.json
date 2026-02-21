@@ -21,6 +21,12 @@
       ]
     },
     {
+      "label": "Поездка",
+      "url": "/mission/",
+      "pageId": "mission",
+      "icon": "bi-globe-americas"
+    },
+    {
       "label": "Контакты",
       "url": "/#contacts",
       "pageId": "_contacts"
@@ -66,6 +72,16 @@
         { "label": "Сырьё и технология", "url": "/sorgo-food-1/" },
         { "label": "Применение в food",  "url": "/sorgo-food-2/" },
         { "label": "Внедрение и риски",  "url": "/sorgo-food-3/" }
+      ]
+    },
+    "mission": {
+      "heading": "Поездка",
+      "icon": "bi-globe-americas",
+      "links": [
+        { "label": "Формат",    "url": "#format" },
+        { "label": "Модули",    "url": "#modules" },
+        { "label": "Партнёры",  "url": "#partners" },
+        { "label": "Логистика", "url": "#logistics" }
       ]
     }
   }

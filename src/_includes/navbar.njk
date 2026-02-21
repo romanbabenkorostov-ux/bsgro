@@ -36,6 +36,9 @@
                   {% endfor %}
                 </ul>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/mission/" style="color:var(--clr-terra) !important;"><i class="bi bi-globe-americas me-1"></i>Поездка</a>
+              </li>
             {% endif %}
           {% endfor %}
 
@@ -70,6 +73,11 @@
             <li class="nav-item"><a class="nav-link" href="/#processing">Переработка</a></li>
             <li class="nav-item"><a class="nav-link" href="/#margin">Маржинальность</a></li>
           {% endif %}
+
+          {# Поездка #}
+          <li class="nav-item">
+            <a class="nav-link{% if pageId == 'mission' %} active{% endif %}" href="/mission/" style="{% if pageId != 'mission' %}color:var(--clr-terra) !important;{% endif %}"><i class="bi bi-globe-americas me-1"></i>Поездка</a>
+          </li>
 
           {# Контакты #}
           <li class="nav-item">
