@@ -1,5 +1,4 @@
 {# ===== NAVBAR ===== #}
-{# Принцип: ≤6 пунктов на любой странице. Якоря секций index — в dropdown. #}
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
 
@@ -17,67 +16,106 @@
     <div class="collapse navbar-collapse" id="navContent">
       <ul class="navbar-nav ms-auto me-3">
 
-        {# ===== INDEX PAGE ===== #}
+        {# ===== INDEX PAGE: full section-nav ===== #}
         {% if pageId == "index" %}
 
-          {# 1. О проекте ▾ (dropdown с якорями секций) #}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#project" role="button" data-bs-toggle="dropdown">О проекте</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#project"><i class="bi bi-info-circle me-2"></i>О проекте</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#strategy"><i class="bi bi-compass me-2"></i>Стратегия</a></li>
-              <li><a class="dropdown-item" href="#products"><i class="bi bi-box-seam me-2"></i>Продукты</a></li>
-              <li><a class="dropdown-item" href="#processing"><i class="bi bi-gear me-2"></i>Переработка</a></li>
-              <li><a class="dropdown-item" href="#margin"><i class="bi bi-graph-up me-2"></i>Маржинальность</a></li>
-              <li><a class="dropdown-item" href="#risks"><i class="bi bi-shield-exclamation me-2"></i>Риски</a></li>
-              <li><a class="dropdown-item" href="#participants"><i class="bi bi-people me-2"></i>Участники</a></li>
-            </ul>
-          </li>
+          {% for sec in nav.indexSections %}
+            {# «О проекте» — затем вставляем страничные ссылки #}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ sec.anchor }}">{{ sec.label }}</a>
+            </li>
+            {% if sec.anchor == "#project" %}
+              <li class="nav-item">
+                <a class="nav-link" href="/sorgo/" style="color:var(--clr-green) !important;">Сорго</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color:var(--clr-lime) !important;">Сироп</a>
+                <ul class="dropdown-menu">
+                  {% for child in nav.main[2].children %}
+                    <li><a class="dropdown-item" href="{{ child.url }}"><i class="bi {{ child.icon }} me-2"></i>{{ child.label }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color:#4FC3F7 !important;"><i class="bi bi-globe2 me-1"></i>Экспорт</a>
+                <ul class="dropdown-menu">
+                  {% for child in nav.main[3].children %}
+                    <li><a class="dropdown-item" href="{{ child.url }}"><i class="bi {{ child.icon }} me-2"></i>{{ child.label }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/mission/" style="color:var(--clr-terra) !important;"><i class="bi bi-globe-americas me-1"></i>Поездка</a>
+              </li>
+            {% endif %}
+          {% endfor %}
 
-        {# ===== INNER PAGES ===== #}
+        {# ===== INNER PAGES: compact nav ===== #}
         {% else %}
 
-          {# 1. Главная #}
+          {# Главная #}
           <li class="nav-item">
             <a class="nav-link" href="/">Главная</a>
           </li>
 
+          {# Сорго #}
+          <li class="nav-item">
+            <a class="nav-link{% if pageId == 'sorgo' %} active{% endif %}" href="/sorgo/">Сорго</a>
+          </li>
+
+          {# Сироп (dropdown) #}
+          {% set isFoodPage = pageId in ["sorgo-food-1", "sorgo-food-2", "sorgo-food-3"] %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle{% if isFoodPage %} active{% endif %}" href="#" role="button" data-bs-toggle="dropdown">Сироп</a>
+            <ul class="dropdown-menu">
+              {% for child in nav.main[2].children %}
+                <li><a class="dropdown-item{% if pageId == child.pageId %} active{% endif %}" href="{{ child.url }}"><i class="bi {{ child.icon }} me-2"></i>{{ child.label }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          {# Экспорт (dropdown) #}
+          {% set isExportPage = pageId in ["export-1", "export-2", "export-3"] %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle{% if isExportPage %} active{% endif %}" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-globe2 me-1"></i>Экспорт</a>
+            <ul class="dropdown-menu">
+              {% for child in nav.main[3].children %}
+                <li><a class="dropdown-item{% if pageId == child.pageId %} active{% endif %}" href="{{ child.url }}"><i class="bi {{ child.icon }} me-2"></i>{{ child.label }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          {# Страницы sorgo.html: дополнительные ссылки на index #}
+          {% if pageId == "sorgo" %}
+            <li class="nav-item"><a class="nav-link" href="/#strategy">Стратегия</a></li>
+            <li class="nav-item"><a class="nav-link" href="/#products">Продукты</a></li>
+            <li class="nav-item"><a class="nav-link" href="/#processing">Переработка</a></li>
+            <li class="nav-item"><a class="nav-link" href="/#margin">Маржинальность</a></li>
+          {% endif %}
+
+          {# Поездка #}
+          <li class="nav-item">
+            <a class="nav-link{% if pageId == 'mission' %} active{% endif %}" href="/mission/" style="{% if pageId != 'mission' %}color:var(--clr-terra) !important;{% endif %}"><i class="bi bi-globe-americas me-1"></i>Поездка</a>
+          </li>
+
+          {# Контакты #}
+          <li class="nav-item">
+            <a class="nav-link" href="/#contacts">Контакты</a>
+          </li>
+
         {% endif %}
-
-        {# ===== ОБЩИЕ ПУНКТЫ (все страницы) ===== #}
-
-        {# 2. Сорго #}
-        <li class="nav-item">
-          <a class="nav-link{% if pageId == 'sorgo' %} active{% endif %}" href="/sorgo/" style="color:var(--clr-green) !important;">Сорго</a>
-        </li>
-
-        {# 3. Сироп ▾ #}
-        {% set isFoodPage = pageId in ["sorgo-food-1", "sorgo-food-2", "sorgo-food-3"] %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle{% if isFoodPage %} active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" style="color:var(--clr-lime) !important;">Сироп</a>
-          <ul class="dropdown-menu">
-            {% for child in nav.main[2].children %}
-              <li><a class="dropdown-item{% if pageId == child.pageId %} active{% endif %}" href="{{ child.url }}"><i class="bi {{ child.icon }} me-2"></i>{{ child.label }}</a></li>
-            {% endfor %}
-          </ul>
-        </li>
-
-        {# 4. Поездка #}
-        <li class="nav-item">
-          <a class="nav-link{% if pageId == 'mission' %} active{% endif %}" href="/mission/" style="{% if pageId != 'mission' %}color:var(--clr-terra) !important;{% endif %}"><i class="bi bi-globe-americas me-1"></i>Поездка</a>
-        </li>
-
-        {# 5. Контакты #}
-        <li class="nav-item">
-          <a class="nav-link" href="/#contacts">Контакты</a>
-        </li>
-
       </ul>
 
-      {# --- Language switch (только активный) --- #}
+      {# --- Language switch --- #}
       <div class="lang-switch d-none d-lg-block">
-        <span class="active-lang">{{ site.activeLang }}</span>
+        {% for lang in site.langs %}
+          {% if lang == site.activeLang %}
+            <span class="active-lang">{{ lang }}</span>
+          {% else %}
+            <span class="disabled-lang">{{ lang }}</span>
+          {% endif %}
+          {% if not loop.last %} | {% endif %}
+        {% endfor %}
       </div>
 
     </div>
