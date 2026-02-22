@@ -6,12 +6,12 @@
       "pageId": "index"
     },
     {
-      "label": "Агрокультура сорго",
+      "label": "Сорго",
       "url": "/sorgo/",
       "pageId": "sorgo"
     },
     {
-      "label": "Сорговый сироп",
+      "label": "Сироп",
       "pageId": "sorgo-food",
       "dropdown": true,
       "children": [
@@ -34,14 +34,14 @@
   ],
 
   "indexSections": [
-    { "label": "О проекте",      "anchor": "#project" },
-    { "label": "Стратегия",      "anchor": "#strategy" },
-    { "label": "Продукты",       "anchor": "#products" },
-    { "label": "Переработка",    "anchor": "#processing" },
-    { "label": "Маржинальность", "anchor": "#margin" },
-    { "label": "Риски",          "anchor": "#risks" },
-    { "label": "Участники",      "anchor": "#participants" },
-    { "label": "Контакты",       "anchor": "#contacts" }
+    { "label": "О проекте",      "anchor": "#project",      "icon": "bi-info-circle" },
+    { "label": "Стратегия",      "anchor": "#strategy",     "icon": "bi-compass" },
+    { "label": "Продукты",       "anchor": "#products",     "icon": "bi-box-seam" },
+    { "label": "Переработка",    "anchor": "#processing",   "icon": "bi-gear" },
+    { "label": "Маржинальность", "anchor": "#margin",       "icon": "bi-graph-up" },
+    { "label": "Риски",          "anchor": "#risks",        "icon": "bi-shield-exclamation" },
+    { "label": "Участники",      "anchor": "#participants", "icon": "bi-people" },
+    { "label": "Контакты",       "anchor": "#contacts",     "icon": "bi-envelope" }
   ],
 
   "footerLinks": {
@@ -49,7 +49,7 @@
       "heading": "Навигация",
       "icon": "bi-link-45deg",
       "links": [
-        { "label": "Агрокультура сорго", "url": "/sorgo/" },
+        { "label": "Сорго",            "url": "/sorgo/" },
         { "label": "О проекте",          "url": "#project" },
         { "label": "Стратегия",          "url": "#strategy" },
         { "label": "Маржинальность",     "url": "#margin" }
