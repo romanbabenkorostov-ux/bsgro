@@ -20,7 +20,6 @@
         {% if pageId == "index" %}
 
           {% for sec in nav.indexSections %}
-            {# «О проекте» — затем вставляем страничные ссылки #}
             <li class="nav-item">
               <a class="nav-link" href="{{ sec.anchor }}">{{ sec.label }}</a>
             </li>
@@ -44,6 +43,8 @@
                   {% endfor %}
                 </ul>
               </li>
+            {% endif %}
+            {% if sec.anchor == "#margin" %}
               <li class="nav-item">
                 <a class="nav-link" href="/mission/" style="color:var(--clr-terra) !important;"><i class="bi bi-globe-americas me-1"></i>Поездка</a>
               </li>

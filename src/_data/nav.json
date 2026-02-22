@@ -44,14 +44,12 @@
   ],
 
   "indexSections": [
-    { "label": "О проекте",      "anchor": "#project" },
-    { "label": "Стратегия",      "anchor": "#strategy" },
-    { "label": "Продукты",       "anchor": "#products" },
-    { "label": "Переработка",    "anchor": "#processing" },
-    { "label": "Маржинальность", "anchor": "#margin" },
-    { "label": "Риски",          "anchor": "#risks" },
-    { "label": "Участники",      "anchor": "#participants" },
-    { "label": "Контакты",       "anchor": "#contacts" }
+    { "label": "Главная",         "anchor": "#project" },
+    { "label": "Стратегия",       "anchor": "#strategy" },
+    { "label": "Продукты",        "anchor": "#products" },
+    { "label": "Переработка",     "anchor": "#processing" },
+    { "label": "Маржинальность",  "anchor": "#margin" },
+    { "label": "Контакты",        "anchor": "#contacts" }
   ],
 
   "footerLinks": {
@@ -59,7 +57,7 @@
       "heading": "Навигация",
       "icon": "bi-link-45deg",
       "links": [
-        { "label": "Агрокультура сорго", "url": "/sorgo/" },
+        { "label": "Сорго", "url": "/sorgo/" },
         { "label": "О проекте",          "url": "#project" },
         { "label": "Стратегия",          "url": "#strategy" },
         { "label": "Маржинальность",     "url": "#margin" }
