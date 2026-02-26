@@ -5,8 +5,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/CNAME");
-  eleventyConfig.addPassthroughCopy("src/manifest.json");
-  eleventyConfig.addPassthroughCopy("src/sw.js");
+
+  // --- PWA: манифест и service worker в корень сайта ---
+  eleventyConfig.addPassthroughCopy({ "src/manifest.json": "manifest.json" });
+  eleventyConfig.addPassthroughCopy({ "src/sw.js": "sw.js" });
 
   // --- Watch targets (для dev-сервера) ---
   eleventyConfig.addWatchTarget("src/css/");

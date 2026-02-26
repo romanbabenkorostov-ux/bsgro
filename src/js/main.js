@@ -35,3 +35,32 @@ bars.forEach(b => barObs.observe(b));
     });
   });
 })();
+
+/* ===== Mobile navbar: auto-close on link/dropdown-item click ===== */
+(function() {
+  const navCollapse = document.getElementById('navContent');
+  if (!navCollapse) return;
+
+  // Get Bootstrap Collapse instance (created by bootstrap.bundle.min.js)
+  function getCollapseInstance() {
+    return bootstrap.Collapse.getInstance(navCollapse);
+  }
+
+  // Close menu when any nav-link or dropdown-item is clicked (mobile only)
+  navCollapse.addEventListener('click', function(e) {
+    const link = e.target.closest('a.nav-link, a.dropdown-item');
+    if (!link) return;
+
+    // Only act when navbar is in mobile collapsed mode
+    if (!navCollapse.classList.contains('show')) return;
+
+    // Skip dropdown toggles — they should open the submenu, not close the navbar
+    if (link.classList.contains('dropdown-toggle')) return;
+
+    // Close the navbar
+    const bsCollapse = getCollapseInstance();
+    if (bsCollapse) {
+      bsCollapse.hide();
+    }
+  });
+})();

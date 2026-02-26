@@ -1,5 +1,5 @@
-// BSGRO Service Worker — PWA offline support
-const CACHE_NAME = 'bsgro-v1';
+// Центр компетенций БСГРО / BSGRO — Service Worker — PWA offline support
+const CACHE_NAME = 'bsgro-v2';
 const STATIC_ASSETS = [
   '/',
   '/css/style.css',
