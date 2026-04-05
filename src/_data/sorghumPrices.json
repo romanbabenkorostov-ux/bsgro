@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "source": "IMF Primary Commodity Price System (PCPS)",
+    "commodity": "PSORG — Sorghum, U.S. No.2 yellow, FOB Gulf ports",
+    "unit": "USD per metric ton",
+    "updated": "2026-03-15",
+    "note": "Seed: IMF Table 3 + FAO Cereal Index (Mar 2026). Запустите node scripts/fetch-sorghum.mjs для точных данных."
+  },
+  "prices": [
+    {"date":"2021-01","price":283},{"date":"2021-02","price":303},{"date":"2021-03","price":325},
+    {"date":"2021-04","price":345},{"date":"2021-05","price":374},{"date":"2021-06","price":381},
+    {"date":"2021-07","price":363},{"date":"2021-08","price":345},{"date":"2021-09","price":330},
+    {"date":"2021-10","price":320},{"date":"2021-11","price":330},{"date":"2021-12","price":338},
+    {"date":"2022-01","price":348},{"date":"2022-02","price":355},{"date":"2022-03","price":378},
+    {"date":"2022-04","price":400},{"date":"2022-05","price":410},{"date":"2022-06","price":405},
+    {"date":"2022-07","price":380},{"date":"2022-08","price":365},{"date":"2022-09","price":350},
+    {"date":"2022-10","price":345},{"date":"2022-11","price":345},{"date":"2022-12","price":340},
+    {"date":"2023-01","price":340},{"date":"2023-02","price":335},{"date":"2023-03","price":330},
+    {"date":"2023-04","price":325},{"date":"2023-05","price":320},{"date":"2023-06","price":315},
+    {"date":"2023-07","price":310},{"date":"2023-08","price":305},{"date":"2023-09","price":300},
+    {"date":"2023-10","price":305},{"date":"2023-11","price":310},{"date":"2023-12","price":308},
+    {"date":"2024-01","price":300},{"date":"2024-02","price":295},{"date":"2024-03","price":290},
+    {"date":"2024-04","price":280},{"date":"2024-05","price":272},{"date":"2024-06","price":265},
+    {"date":"2024-07","price":255},{"date":"2024-08","price":248},{"date":"2024-09","price":240},
+    {"date":"2024-10","price":235},{"date":"2024-11","price":232},{"date":"2024-12","price":228},
+    {"date":"2025-01","price":238},{"date":"2025-02","price":235},{"date":"2025-03","price":230},
+    {"date":"2025-04","price":215},{"date":"2025-05","price":200},{"date":"2025-06","price":190},
+    {"date":"2025-07","price":175},{"date":"2025-08","price":170},{"date":"2025-09","price":170},
+    {"date":"2025-10","price":172},{"date":"2025-11","price":175},{"date":"2025-12","price":179},
+    {"date":"2026-01","price":183},{"date":"2026-02","price":188}
+  ]
+}

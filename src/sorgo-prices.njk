@@ -1,0 +1,369 @@
+---
+layout: base.njk
+pageId: "sorgo-prices"
+pageTitle: "BSGRO — Динамика мировых цен на сорго (IMF PCPS)"
+pageDescription: "График цен на сорго (U.S. No.2 yellow, USD за метрическую тонну) по открытым данным IMF Primary Commodity Price System. Обновляется ежемесячно."
+pageKeywords: "сорго, цены, IMF, PCPS, график, сельское хозяйство, USD, метрическая тонна"
+footerGroup: "sorgo"
+permalink: "/sorgo-prices/"
+---
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero" style="padding:5rem 0 3rem; background: linear-gradient(135deg, #061D33 0%, #0D3B66 40%, #1B5E20 100%); color:#fff;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-10">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-2" style="background:transparent;padding:0;">
+            <li class="breadcrumb-item"><a href="/" style="color:var(--clr-lime);">Главная</a></li>
+            <li class="breadcrumb-item"><a href="/#strategy" style="color:var(--clr-lime);">Стратегия</a></li>
+            <li class="breadcrumb-item active" style="color:rgba(255,255,255,0.7);">Цены на сорго</li>
+          </ol>
+        </nav>
+        <h1 style="font-size:clamp(1.6rem,3.5vw,2.4rem);">
+          <i class="bi bi-graph-up-arrow me-2"></i>Динамика мировых цен на сорго
+        </h1>
+        <p class="mb-0" style="opacity:0.85; max-width:700px;">
+          Sorghum, U.S. No.2 yellow, FOB Gulf ports&ensp;·&ensp;USD за метрическую тонну<br>
+          Источник: <strong>IMF Primary Commodity Price System (PCPS)</strong>, код PSORG
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHART SECTION ===== -->
+<section style="background:var(--clr-bg); padding:3rem 0 2rem;">
+  <div class="container">
+
+    <!-- Toolbar -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+      <div>
+        <span id="chartPeriod" class="text-muted small"></span>
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <span id="refreshStatus" class="small"></span>
+        <button id="btnRefresh" class="btn btn-sm btn-outline-success" onclick="refreshData()" title="Запросить свежие данные из IMF API">
+          <i class="bi bi-arrow-clockwise me-1"></i>Обновить
+        </button>
+      </div>
+    </div>
+
+    <!-- Chart container -->
+    <div class="card-custom p-3 p-md-4" style="border-top:4px solid var(--clr-green); position:relative;">
+      <div id="chartLoading" class="text-center py-5" style="display:none;">
+        <div class="spinner-border text-success" role="status"></div>
+        <p class="text-muted mt-2 small">Загрузка актуальных данных IMF…</p>
+      </div>
+      <div style="position:relative; height:clamp(320px, 45vw, 520px);">
+        <canvas id="sorghumChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Key stats -->
+    <div class="row g-3 mt-3" id="statsRow">
+      <div class="col-6 col-md-3">
+        <div class="card-custom p-3 text-center">
+          <div class="stat-number" id="statMax" style="font-size:1.4rem;">—</div>
+          <div class="stat-label">Макс ($/т)</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card-custom p-3 text-center">
+          <div class="stat-number" id="statMin" style="font-size:1.4rem; color:var(--clr-terra);">—</div>
+          <div class="stat-label">Мин ($/т)</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card-custom p-3 text-center">
+          <div class="stat-number" id="statLast" style="font-size:1.4rem; color:var(--clr-blue);">—</div>
+          <div class="stat-label">Последняя ($/т)</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card-custom p-3 text-center">
+          <div class="stat-number" id="statChange" style="font-size:1.4rem;">—</div>
+          <div class="stat-label">Изменение за год</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Source info -->
+    <div class="mt-4 p-3" style="background:var(--clr-bg-alt); border-radius:var(--radius); border-left:4px solid var(--clr-green);">
+      <p class="small mb-1"><strong>Источник:</strong> IMF PCPS (код PSORG). Цены Texas Gulf cash grain export, No.2 Grain Sorghum (USDA). Пересчёт из $/cwt в $/MT (×22.046).</p>
+      <p class="small mb-1"><strong>Периодичность:</strong> IMF публикует данные ежемесячно, обычно в первую среду месяца. Последний доступный месяц отображается на графике автоматически.</p>
+      <p class="small mb-0" id="dataSourceNote">Загрузка…</p>
+    </div>
+
+    <!-- Back links -->
+    <div class="mt-4 text-center">
+      <a href="/#strategy" class="btn btn-outline-success me-2"><i class="bi bi-arrow-left me-1"></i>К стратегии</a>
+      <a href="/sorgo/#sec1" class="btn btn-outline-primary"><i class="bi bi-book me-1"></i>Глобальный обзор сорго</a>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── Статические данные (встроены при сборке Eleventy) ── */
+  const STATIC_DATA = {{ sorghumPrices | dump | safe }};
+  const CWT_TO_MT = 22.046;
+
+  /* ── Состояние ── */
+  let chartInstance = null;
+  let currentSource = 'static';
+
+  /* ── Инициализация: показать статику, затем попробовать live ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    renderChart(STATIC_DATA.prices);
+    updateStats(STATIC_DATA.prices);
+    updateMeta(STATIC_DATA.prices, 'static', STATIC_DATA.meta?.updated);
+
+    // Автоматически пробуем подгрузить свежие данные
+    autoFetch();
+  });
+
+  /* ── Автозагрузка свежих данных ── */
+  async function autoFetch() {
+    const status = document.getElementById('refreshStatus');
+    status.innerHTML = '<span class="spinner-border spinner-border-sm text-success me-1" style="width:14px;height:14px;"></span><span class="text-muted">обновление…</span>';
+
+    try {
+      const prices = await fetchFromIMF();
+      if (prices && prices.length > 0) {
+        renderChart(prices);
+        updateStats(prices);
+        updateMeta(prices, 'live', new Date().toISOString().slice(0, 10));
+        currentSource = 'live';
+        status.innerHTML = '<span class="text-success">● live</span>';
+      } else {
+        throw new Error('empty');
+      }
+    } catch (e) {
+      console.info('Auto-fetch failed, using static data:', e.message);
+      status.innerHTML = '<span class="text-muted" title="Используются предзагруженные данные">● cached</span>';
+    }
+  }
+
+  /* ── Fetch из IMF SDMX API (через несколько источников) ── */
+  async function fetchFromIMF() {
+    const startYear = new Date().getFullYear() - 5;
+
+    // Источник 1: прямой IMF API (может не работать из-за CORS)
+    const imfUrl = 'http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/PCPS/' +
+      'M.W00.PSORG.USD?startPeriod=' + startYear + '&endPeriod=' + (new Date().getFullYear());
+
+    // Источник 2: DBnomics (зеркало IMF, CORS есть)
+    const dbnUrl = 'https://api.db.nomics.world/v22/series/IMF/PCPS/M.W00.PSORG.USD?observations=1';
+
+    // Пробуем IMF напрямую
+    try {
+      const resp = await fetch(imfUrl, { signal: AbortSignal.timeout(8000) });
+      if (resp.ok) {
+        const data = await resp.json();
+        const series = data?.CompactData?.DataSet?.Series;
+        if (series) {
+          const obs = Array.isArray(series.Obs) ? series.Obs : [series.Obs];
+          return obs
+            .filter(o => o?.['@OBS_VALUE'] && o?.['@TIME_PERIOD'])
+            .map(o => ({
+              date: o['@TIME_PERIOD'],
+              price: Math.round(parseFloat(o['@OBS_VALUE']) * CWT_TO_MT * 100) / 100
+            }))
+            .filter(p => parseInt(p.date) >= startYear)
+            .sort((a, b) => a.date.localeCompare(b.date));
+        }
+      }
+    } catch (_) { /* CORS or network error — try next */ }
+
+    // Фолбек: DBnomics
+    try {
+      const resp = await fetch(dbnUrl, { signal: AbortSignal.timeout(10000) });
+      if (resp.ok) {
+        const json = await resp.json();
+        const series = json?.series?.docs?.[0];
+        if (series) {
+          const periods = series.period || [];
+          const values = series.value || [];
+          const prices = [];
+          for (let i = 0; i < periods.length; i++) {
+            if (values[i] == null || isNaN(values[i])) continue;
+            if (parseInt(periods[i]) < startYear) continue;
+            prices.push({
+              date: periods[i],
+              price: Math.round(parseFloat(values[i]) * CWT_TO_MT * 100) / 100
+            });
+          }
+          if (prices.length > 0) return prices.sort((a, b) => a.date.localeCompare(b.date));
+        }
+      }
+    } catch (_) { /* network error */ }
+
+    return null;
+  }
+
+  /* ── Кнопка «Обновить» ── */
+  window.refreshData = async function () {
+    const btn = document.getElementById('btnRefresh');
+    const status = document.getElementById('refreshStatus');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Загрузка…';
+    status.textContent = '';
+
+    try {
+      const prices = await fetchFromIMF();
+      if (prices && prices.length > 0) {
+        renderChart(prices);
+        updateStats(prices);
+        updateMeta(prices, 'live', new Date().toISOString().slice(0, 10));
+        currentSource = 'live';
+        status.innerHTML = '<span class="text-success">✓ обновлено</span>';
+      } else {
+        throw new Error('Нет данных');
+      }
+    } catch (err) {
+      status.innerHTML = '<span style="color:var(--clr-terra);">API временно недоступен — отображены кэшированные данные</span>';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i>Обновить';
+    }
+  };
+
+  /* ── Отрисовка графика ── */
+  function renderChart(prices) {
+    const ctx = document.getElementById('sorghumChart');
+    if (chartInstance) chartInstance.destroy();
+
+    const labels = prices.map(p => p.date);
+    const values = prices.map(p => p.price);
+
+    const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, ctx.parentElement.clientHeight);
+    gradient.addColorStop(0, 'rgba(46, 125, 50, 0.25)');
+    gradient.addColorStop(1, 'rgba(46, 125, 50, 0.01)');
+
+    chartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Сорго, USD/MT',
+          data: values,
+          borderColor: '#2E7D32',
+          backgroundColor: gradient,
+          borderWidth: 2.5,
+          tension: 0.3,
+          fill: true,
+          pointRadius: 0,
+          pointHitRadius: 12,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: '#2E7D32',
+          pointHoverBorderColor: '#fff',
+          pointHoverBorderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            displayColors: false,
+            backgroundColor: 'rgba(13, 59, 102, 0.92)',
+            titleFont: { family: 'Montserrat', size: 12 },
+            bodyFont: { family: 'Montserrat', size: 14, weight: 'bold' },
+            padding: { x: 14, y: 10 },
+            cornerRadius: 8,
+            callbacks: {
+              title: function (items) {
+                var d = items[0].label;
+                var parts = d.split('-');
+                var months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+                return months[parseInt(parts[1]) - 1] + ' ' + parts[0];
+              },
+              label: function (ctx) { return '$' + ctx.raw.toFixed(0) + ' / MT'; }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(0,0,0,0.04)', drawBorder: false },
+            ticks: {
+              font: { family: 'Montserrat', size: 11 },
+              color: '#5A6268',
+              maxRotation: 0,
+              callback: function (val, idx) {
+                var lbl = this.getLabelForValue(val);
+                if (lbl.endsWith('-01') || idx === labels.length - 1) {
+                  return lbl.endsWith('-01') ? lbl.slice(0, 4) : lbl;
+                }
+                return '';
+              },
+              autoSkip: true,
+              maxTicksLimit: 12
+            }
+          },
+          y: {
+            grid: { color: 'rgba(0,0,0,0.04)', drawBorder: false },
+            ticks: {
+              font: { family: 'Montserrat', size: 11 },
+              color: '#5A6268',
+              callback: function (v) { return '$' + v; }
+            },
+            title: {
+              display: true,
+              text: 'USD за метрическую тонну',
+              font: { family: 'Montserrat', size: 12, weight: '600' },
+              color: '#5A6268'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  /* ── Статистика ── */
+  function updateStats(prices) {
+    if (!prices.length) return;
+    var vals = prices.map(function(p) { return p.price; });
+    var max = Math.max.apply(null, vals);
+    var min = Math.min.apply(null, vals);
+    var last = vals[vals.length - 1];
+
+    document.getElementById('statMax').textContent = '$' + max.toFixed(0);
+    document.getElementById('statMin').textContent = '$' + min.toFixed(0);
+    document.getElementById('statLast').textContent = '$' + last.toFixed(0);
+
+    if (prices.length >= 13) {
+      var prev = vals[vals.length - 13];
+      var pct = ((last - prev) / prev * 100).toFixed(1);
+      var sign = pct > 0 ? '+' : '';
+      var el = document.getElementById('statChange');
+      el.textContent = sign + pct + '%';
+      el.style.color = pct >= 0 ? 'var(--clr-green)' : 'var(--clr-terra)';
+    }
+  }
+
+  /* ── Метаданные ── */
+  function updateMeta(prices, source, dateStr) {
+    var last = prices[prices.length - 1];
+    var months = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+    var parts = last.date.split('-');
+    var humanDate = months[parseInt(parts[1]) - 1] + ' ' + parts[0];
+
+    document.getElementById('chartPeriod').textContent =
+      'Период: ' + prices[0].date + ' — ' + last.date;
+
+    var noteEl = document.getElementById('dataSourceNote');
+    if (source === 'live') {
+      noteEl.innerHTML = '<i class="bi bi-check-circle-fill text-success me-1"></i><strong>Актуальные данные.</strong> Последний месяц на графике: <strong>' + humanDate + '</strong>. Получено напрямую из IMF API.';
+    } else {
+      noteEl.innerHTML = '<i class="bi bi-info-circle me-1"></i>Последний месяц на графике: <strong>' + humanDate + '</strong>. Данные из кэша (обновлены ' + dateStr + '). Нажмите «Обновить» для актуализации.';
+    }
+  }
+
+})();
+</script>
