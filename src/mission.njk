@@ -35,6 +35,18 @@ permalink: "/mission/"
   </div>
 </section>
 
+{% if archive.argentinaMission | visibleNow %}
+<!-- ===== БЛИЖАЙШАЯ ПОЕЗДКА ===== -->
+<section style="padding:1.5rem 0 0;" data-hide-after="{{ archive.argentinaMission }}">
+  <div class="container">
+    <div class="card-custom p-3 d-flex flex-wrap align-items-center justify-content-between gap-3 fade-up" style="border-left:4px solid var(--clr-green);">
+      <div><i class="bi bi-geo-alt me-2" style="color:var(--clr-green);"></i><strong>Ближайшая поездка: Аргентина, 24.11–04.12.2026</strong> — программа, карта, расписание</div>
+      <a href="/mission/argentina-2026/" class="btn btn-sm btn-success">Открыть программу</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
 <!-- ===== ФОРМАТ ===== -->
 <section id="format">
   <div class="container">

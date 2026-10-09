@@ -1,4 +1,17 @@
+const archive = require("./src/_data/archive.json");
+
+// Момент сборки: BUILD_NOW (ISO) или текущее время
+const buildNow = process.env.BUILD_NOW ? Date.parse(process.env.BUILD_NOW) : Date.now();
+
 module.exports = function(eleventyConfig) {
+
+  // --- Архив: после срока страница миссии в Аргентину не собирается ---
+  if (buildNow >= Date.parse(archive.argentinaMission)) {
+    eleventyConfig.ignores.add("src/mission-argentina-2026.njk");
+  }
+
+  // --- Фильтр: true, если срок iso пуст или ещё не наступил ---
+  eleventyConfig.addFilter("visibleNow", (iso) => !iso || buildNow < Date.parse(iso));
 
   // --- Passthrough copy: статика без обработки ---
   eleventyConfig.addPassthroughCopy("src/css");

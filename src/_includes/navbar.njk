@@ -20,7 +20,17 @@
         {% for item in nav.main %}
           {% if item.dropdown %}
             {% set isActive = false %}
-            {% for child in item.children %}{% if child.pageId and child.pageId == pageId %}{% set isActive = true %}{% endif %}{% endfor %}
+            {% set visCount = 0 %}
+            {% set lastVis = null %}
+            {% for child in item.children %}
+              {% if child.pageId and child.pageId == pageId %}{% set isActive = true %}{% endif %}
+              {% if child.url and (not child.hideAfterKey or (archive[child.hideAfterKey] | visibleNow)) %}{% set visCount = visCount + 1 %}{% set lastVis = child %}{% endif %}
+            {% endfor %}
+            {% if visCount == 1 %}
+            <li class="nav-item">
+              <a class="nav-link{% if isActive %} active{% endif %}" href="{{ lastVis.url }}">{% if item.icon %}<i class="bi {{ item.icon }} me-1"></i>{% endif %}{{ item.label }}</a>
+            </li>
+            {% else %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle{% if isActive %} active{% endif %}" href="#" role="button" data-bs-toggle="dropdown">{{ item.label }}</a>
               <ul class="dropdown-menu">
@@ -29,12 +39,15 @@
                     <li><hr class="dropdown-divider"></li>
                   {% elif child.type == "header" %}
                     <li><h6 class="dropdown-header">{{ child.label }}</h6></li>
-                  {% else %}
+                  {% elif not child.hideAfterKey %}
                     <li><a class="dropdown-item{% if pageId == child.pageId %} active{% endif %}" href="{{ child.url }}">{% if child.icon %}<i class="bi {{ child.icon }} me-2"></i>{% endif %}{{ child.label }}</a></li>
+                  {% elif archive[child.hideAfterKey] | visibleNow %}
+                    <li data-hide-after="{{ archive[child.hideAfterKey] }}"><a class="dropdown-item{% if pageId == child.pageId %} active{% endif %}" href="{{ child.url }}">{% if child.icon %}<i class="bi {{ child.icon }} me-2"></i>{% endif %}{{ child.label }}</a></li>
                   {% endif %}
                 {% endfor %}
               </ul>
             </li>
+            {% endif %}
           {% else %}
             <li class="nav-item">
               <a class="nav-link{% if pageId == item.pageId %} active{% endif %}" href="{{ item.url }}">{% if item.icon %}<i class="bi {{ item.icon }} me-1"></i>{% endif %}{{ item.label }}</a>

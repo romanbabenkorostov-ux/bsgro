@@ -87,9 +87,23 @@
     },
     {
       "label": "Обмен опытом",
-      "url": "/mission/",
-      "pageId": "mission",
-      "icon": "bi-globe-americas"
+      "pageId": "mission-group",
+      "dropdown": true,
+      "children": [
+        {
+          "label": "Технологическая миссия (формат)",
+          "url": "/mission/",
+          "icon": "bi-globe-americas",
+          "pageId": "mission"
+        },
+        {
+          "label": "Аргентина, 24.11–04.12.2026",
+          "url": "/mission/argentina-2026/",
+          "icon": "bi-geo-alt",
+          "pageId": "mission-ar-2026",
+          "hideAfterKey": "argentinaMission"
+        }
+      ]
     },
     {
       "label": "Контакты",
@@ -274,19 +288,24 @@
       "links": [
         {
           "label": "Формат",
-          "url": "#format"
+          "url": "/mission/#format"
         },
         {
           "label": "Модули",
-          "url": "#modules"
+          "url": "/mission/#modules"
         },
         {
           "label": "Партнёры",
-          "url": "#partners"
+          "url": "/mission/#partners"
         },
         {
           "label": "Логистика",
-          "url": "#logistics"
+          "url": "/mission/#logistics"
+        },
+        {
+          "label": "Аргентина 2026",
+          "url": "/mission/argentina-2026/",
+          "hideAfterKey": "argentinaMission"
         }
       ]
     }

@@ -1,0 +1,330 @@
+---
+layout: base.njk
+pageId: "mission-ar-2026"
+pageTitle: "BSGRO — Агромиссия в Аргентину, 24.11–04.12.2026"
+pageDescription: "Агромиссия в Аргентину 24.11–04.12.2026: маршрут с картой, программа по дням, посещаемые организации (ACA, INTA, UNION, EA, AGROCONSULTOR), аграрные школы, опыт No-Till и работа в засушливых зонах."
+footerGroup: "mission"
+permalink: "/mission/argentina-2026/"
+---
+
+<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
+<style>
+  .ar-note { background:#fff8e1; border-left:4px solid #f9a825; border-radius:var(--radius); padding:.75rem 1rem; font-size:.9rem; }
+  #arMap { height:480px; border-radius:var(--radius); box-shadow:0 2px 12px var(--clr-card-shadow); scroll-margin-top:90px; z-index:0; }
+  #arMapTable tr[id^="row-"], #arAirports li[id^="row-"] { scroll-margin-top:90px; cursor:pointer; }
+  #arMapTable tr.is-active, #arAirports li.is-active { background:#fff3b0 !important; transition:background .3s; }
+  #arMapTable tr:focus-visible, #arAirports li:focus-visible { outline:3px solid var(--clr-blue); outline-offset:-3px; }
+  .ar-marker { width:30px; height:30px; border-radius:50%; background:var(--clr-navy); color:#fff; border:2px solid #fff; box-shadow:0 1px 6px rgba(0,0,0,.45); font:700 13px/26px sans-serif; text-align:center; }
+  .ar-marker.is-active { background:#d62828; transform:scale(1.35); box-shadow:0 0 0 4px rgba(214,40,40,.35); }
+  .ar-airport { min-width:34px; height:20px; border-radius:10px; background:#1f6feb; color:#fff; border:1.5px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.4); font:700 11px/17px sans-serif; text-align:center; padding:0 4px; }
+  .ar-airport.is-active { background:#d62828; }
+  .ar-legend { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; font-size:.85rem; margin-top:.75rem; }
+  .ar-legend svg { vertical-align:middle; margin-right:.35rem; }
+  .ar-num { display:inline-block; min-width:1.9rem; height:1.9rem; line-height:1.9rem; border-radius:50%; background:var(--clr-navy); color:#fff; text-align:center; font-weight:700; font-size:.85rem; }
+  .ar-popup ul { padding-left:1.1rem; margin:.25rem 0 0; }
+  @media (max-width:767px) { #arMap { height:320px; } }
+</style>
+
+<div id="arArchived" data-show-after="{{ archive.argentinaMission | default('2026-12-06T00:00:00-03:00') }}" hidden style="display:none">Материал перенесён в архив. <a href="/mission/">К странице миссии</a></div>
+
+<div id="arContent" data-hide-after="{{ archive.argentinaMission | default('2026-12-06T00:00:00-03:00') }}">
+
+<!-- ===== HERO ===== -->
+<section class="hero" style="padding:5rem 0 3rem; background: linear-gradient(135deg, #061D33 0%, #1B5E20 40%, #4E342E 100%); color:#fff;">
+  <div class="container">
+    <nav aria-label="breadcrumb"><ol class="breadcrumb mb-2" style="background:transparent;padding:0;"><li class="breadcrumb-item"><a href="/" style="color:var(--clr-lime);">Главная</a></li><li class="breadcrumb-item"><a href="/mission/" style="color:var(--clr-lime);">Обмен опытом</a></li><li class="breadcrumb-item active" style="color:rgba(255,255,255,0.7);">Аргентина, 24.11–04.12.2026</li></ol></nav>
+    <h1 style="color:#fff;"><i class="bi bi-globe-americas me-2" style="color:var(--clr-lime);"></i>Агромиссия в Аргентину</h1>
+    <p class="lead" style="color:rgba(255,255,255,0.9);">24 ноября – 4 декабря 2026 · от Буэнос-Айреса до Мар-дель-Платы: кооперативы, институты INTA, аграрные школы и хозяйства с No-Till в разных климатических зонах</p>
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      <a href="#flights" class="btn btn-sm" style="background:rgba(255,255,255,0.12);color:var(--clr-lime);border:1px solid rgba(139,195,74,0.3);border-radius:20px;font-size:0.75rem;"><i class="bi bi-airplane me-1"></i>Перелёты</a>
+      <a href="#arMap" class="btn btn-sm" style="background:rgba(255,255,255,0.12);color:var(--clr-lime);border:1px solid rgba(139,195,74,0.3);border-radius:20px;font-size:0.75rem;"><i class="bi bi-map me-1"></i>Карта</a>
+      <a href="#schedule" class="btn btn-sm" style="background:rgba(255,255,255,0.12);color:var(--clr-lime);border:1px solid rgba(139,195,74,0.3);border-radius:20px;font-size:0.75rem;"><i class="bi bi-calendar-week me-1"></i>Программа</a>
+      <a href="#ar-modules" class="btn btn-sm" style="background:rgba(255,255,255,0.12);color:var(--clr-lime);border:1px solid rgba(139,195,74,0.3);border-radius:20px;font-size:0.75rem;"><i class="bi bi-diagram-3 me-1"></i>Модули</a>
+      <a href="#conditions" class="btn btn-sm" style="background:rgba(255,255,255,0.12);color:var(--clr-lime);border:1px solid rgba(139,195,74,0.3);border-radius:20px;font-size:0.75rem;"><i class="bi bi-person-check me-1"></i>Условия</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:1.5rem 0 0;">
+  <div class="container">
+    <div class="ar-note fade-up"><i class="bi bi-archive me-1"></i>Материал будет перенесён в архив 06.12.2026 в 00:00 по времени Аргентины.</div>
+  </div>
+</section>
+
+<!-- ===== ПЕРЕЛЁТЫ ===== -->
+<section id="flights">
+  <div class="container">
+    <h2 class="section-title fade-up"><span class="badge bg-primary rounded-pill me-2" style="font-size:0.7em;"><i class="bi bi-airplane"></i></span>Перелёты</h2>
+    <p class="section-subtitle fade-up">Туда: Краснодар (KRR) или Сочи (AER) → Стамбул (IST) → Сан-Паулу (GRU) → Буэнос-Айрес (EZE). Известно только время прилёта: 24.11 в 22:25. Дата и время вылета, а также обратный маршрут 04.12 уточняются.</p>
+    <div class="card-custom p-3 fade-up">
+      <ul id="arAirports" class="list-unstyled mb-0">
+        {% for a in argentinaTrip2026.airports %}
+        <li id="row-airport-{{ a.code }}" data-airport="{{ a.code }}" tabindex="0" role="button" class="py-2 px-2 border-bottom"><strong>{{ a.code }}</strong> · {{ a.name }} <span class="text-muted small">— {{ a.note }}</span></li>
+        {% endfor %}
+      </ul>
+      <p class="small text-muted mt-2 mb-0">Нажмите на строку, чтобы увидеть аэропорт на карте.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== КАРТА ===== -->
+<section style="background:var(--clr-bg-alt);">
+  <div class="container">
+    <h2 class="section-title fade-up"><span class="badge bg-danger rounded-pill me-2" style="font-size:0.7em;"><i class="bi bi-map"></i></span>Маршрут на карте</h2>
+    <p class="section-subtitle fade-up">Нажмите на номер на карте, чтобы перейти к строке программы, или на строку программы, чтобы увидеть точку на карте.</p>
+    <div id="arMap" role="region" aria-label="Карта маршрута агромиссии в Аргентину" class="fade-up"></div>
+    <div class="ar-legend">
+      <span><svg width="36" height="8"><line x1="0" y1="4" x2="36" y2="4" stroke="#1f6feb" stroke-width="3"/></svg>перелёт туда</span>
+      <span><svg width="36" height="8"><line x1="0" y1="4" x2="36" y2="4" stroke="#1f6feb" stroke-width="3" stroke-dasharray="6 8"/></svg>обратный перелёт, маршрут уточняется</span>
+      <span><svg width="36" height="8"><line x1="0" y1="4" x2="36" y2="4" stroke="#d62828" stroke-width="3"/></svg>наземный маршрут, схематично по прямой</span>
+    </div>
+    <p class="small text-muted mt-2 mb-0">Координаты точек приблизительные (центры городов и аэропортов). Линии между пунктами нарисованы по прямой и не отражают дороги и реальные авиатрассы.</p>
+    <p id="arLive" class="visually-hidden" aria-live="polite"></p>
+    <noscript><p class="small mt-2">Для интерактивной карты нужен JavaScript. Программа по дням доступна в таблице ниже.</p></noscript>
+  </div>
+</section>
+
+<!-- ===== РАСПИСАНИЕ ===== -->
+<section id="schedule">
+  <div class="container">
+    <h2 class="section-title fade-up"><span class="badge bg-success rounded-pill me-2" style="font-size:0.7em;"><i class="bi bi-calendar-week"></i></span>Программа по дням</h2>
+    <p class="section-subtitle fade-up">Остановки в порядке маршрута. Данные по масштабу и срокам практики — по материалам программы миссии.</p>
+    <div class="table-responsive fade-up">
+      <table id="arMapTable" class="table table-striped table-bsgro table-cards">
+        <thead><tr><th>№</th><th>Даты</th><th>Место</th><th>Что делаем</th><th>Переезд</th></tr></thead>
+        <tbody>
+        {% for s in argentinaTrip2026.stops %}
+          <tr id="row-{{ s.id }}" data-stop="{{ s.id }}" tabindex="0" role="button" aria-label="Точка {{ s.n }}: {{ s.name }}, показать на карте">
+            <td data-label="№"><span class="ar-num">{{ s.n }}</span></td>
+            <td data-label="Даты" style="white-space:nowrap;">{{ s.dates }}</td>
+            <td data-label="Место"><strong>{{ s.name }}</strong><br><span class="small text-muted">{{ s.place }}</span></td>
+            <td data-label="Что делаем"><ul class="mb-0 ps-3 small">{% for w in s.whatWeDo %}<li>{{ w }}</li>{% endfor %}</ul></td>
+            <td data-label="Переезд" class="small">{% if s.legKm %}{{ s.legKm }} км<br><span class="text-muted">{{ s.legNote }}</span>{% elif s.legNote %}<span class="text-muted">{{ s.legNote }}</span>{% else %}—{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <noscript><p class="small">Без JavaScript таблица работает как обычный список; интерактивная связь с картой отключена.</p></noscript>
+  </div>
+</section>
+
+<!-- ===== МОДУЛИ ===== -->
+<section id="ar-modules" style="background:var(--clr-bg-alt);">
+  <div class="container">
+    <h2 class="section-title fade-up"><span class="badge bg-success rounded-pill me-2" style="font-size:0.7em;"><i class="bi bi-diagram-3"></i></span>Пять модулей программы</h2>
+    <p class="section-subtitle fade-up">Темы, вокруг которых собраны визиты.</p>
+    <div class="row g-3">
+      {% for m in argentinaTrip2026.modules %}
+      <div class="col-md-6 col-lg-4 fade-up">
+        <div class="card-custom p-3 h-100" style="border-top:4px solid var(--clr-green);">
+          <span class="ar-num mb-2">{{ m.n }}</span>
+          <h3 class="h6">{{ m.title }}</h3>
+          <p class="small mb-0">{{ m.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===== СРАВНЕНИЕ ЗОН ===== -->
+<section id="zones">
+  <div class="container">
+    <h2 class="section-title fade-up">Две климатические зоны</h2>
+    <p class="section-subtitle fade-up">Сравнение подходов — по материалам программы миссии.</p>
+    <div class="table-responsive fade-up">
+      <table class="table table-striped table-bsgro table-cards">
+        <thead><tr>{% for h in argentinaTrip2026.zonesComparison.headers %}<th>{{ h }}</th>{% endfor %}</tr></thead>
+        <tbody>
+        {% for r in argentinaTrip2026.zonesComparison.rows %}
+          <tr>{% for c in r %}<td data-label="{{ argentinaTrip2026.zonesComparison.headers[loop.index0] }}">{% if loop.first %}<strong>{{ c }}</strong>{% else %}{{ c }}{% endif %}</td>{% endfor %}</tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== СИНЕРГИЯ ===== -->
+<section style="background:var(--clr-bg-alt);">
+  <div class="container">
+    <h2 class="section-title fade-up">Аргентинская модель синергии</h2>
+    <div class="row g-3">
+      {% for t in argentinaTrip2026.synergy %}
+      <div class="col-sm-6 col-lg-3 fade-up">
+        <div class="card-custom p-3 h-100" style="border-left:4px solid var(--clr-terra);">
+          <h3 class="h6">{{ t.title }}</h3>
+          <p class="small mb-0">{{ t.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===== УСЛОВИЯ ===== -->
+<section id="conditions">
+  <div class="container">
+    <h2 class="section-title fade-up"><span class="badge bg-success rounded-pill me-2" style="font-size:0.7em;"><i class="bi bi-person-check"></i></span>Условия участия</h2>
+    <div class="card-custom p-4 fade-up">
+      <ul class="mb-3">
+        {% for c in argentinaTrip2026.conditions %}<li>{{ c }}</li>{% endfor %}
+      </ul>
+      <p class="mb-0"><i class="bi bi-envelope me-1"></i>Чтобы узнать стоимость и задать вопросы, воспользуйтесь контактами bsgro внизу страницы.</p>
+    </div>
+  </div>
+</section>
+
+<script src="/assets/vendor/leaflet/leaflet.js"></script>
+<script>
+(function () {
+  var TRIP = {{ argentinaTrip2026 | dump | safe }};
+  var live = document.getElementById('arLive');
+  var stopsById = {}, airportsByCode = {}, markers = {}, current = null, timer = null;
+  TRIP.stops.forEach(function (s) { stopsById[s.id] = s; });
+  /* Размер попапа по размеру карты: на телефоне длинный текст прокручивается внутри, а не обрезается */
+  function popupOpts() {
+    var sz = map.getSize();
+    return { maxWidth: Math.max(180, Math.min(320, sz.x - 50)), maxHeight: Math.max(110, sz.y - 120), autoPanPaddingTopLeft: [12, 12], autoPanPaddingBottomRight: [12, 12] };
+  }
+  TRIP.airports.forEach(function (a) { airportsByCode[a.code] = a; });
+
+  function rowEl(id) { return document.getElementById('row-' + id); }
+  function inView(el) { var r = el.getBoundingClientRect(); return r.top >= 70 && r.bottom <= window.innerHeight; }
+  function say(t) { if (live) { live.textContent = ''; live.textContent = t; } }
+
+  function highlight(id, scroll) {
+    var el = rowEl(id); if (!el) return;
+    document.querySelectorAll('#arMapTable tr.is-active, #arAirports li.is-active').forEach(function (e) { e.classList.remove('is-active'); });
+    el.classList.add('is-active');
+    clearTimeout(timer);
+    timer = setTimeout(function () { el.classList.remove('is-active'); }, 3000);
+    if (scroll) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try { history.replaceState(null, '', '#row-' + id); } catch (e) {}
+    }
+  }
+
+  function popupFor(s) {
+    var d = document.createElement('div'); d.className = 'ar-popup';
+    var h = document.createElement('strong'); h.textContent = s.n + '. ' + s.name; d.appendChild(h);
+    [s.dates, s.place].forEach(function (t) { var p = document.createElement('div'); p.textContent = t; d.appendChild(p); });
+    var ul = document.createElement('ul');
+    s.whatWeDo.forEach(function (w) { var li = document.createElement('li'); li.textContent = w; ul.appendChild(li); });
+    d.appendChild(ul);
+    return d;
+  }
+
+  if (typeof L === 'undefined' || !document.getElementById('arMap')) return;
+
+  var map = L.map('arMap', { keyboard: true, scrollWheelZoom: false });
+  map.attributionControl.setPrefix(false);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© участники <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  function ll(p) { return [p.lat, p.lon]; }
+  function bow(a, b) {
+    var m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], dx = b[1] - a[1], dy = b[0] - a[0];
+    return [a, [m[0] + dx * 0.06, m[1] - dy * 0.06], b];
+  }
+
+  // перелёты
+  TRIP.flightSegments.forEach(function (f) {
+    var a = ll(airportsByCode[f.from]), b = ll(airportsByCode[f.to]);
+    var pts = f.dashed ? bow(a, b) : [a, b];
+    var opt = { color: '#1f6feb', weight: 3 };
+    if (f.dashed) opt.dashArray = '6 8';
+    L.polyline(pts, opt).addTo(map).bindTooltip(f.from + ' → ' + f.to + (f.dashed ? ' (маршрут уточняется)' : ''), { sticky: true });
+  });
+
+  // наземный маршрут
+  var path = TRIP.groundRoute.map(function (r) { return r.ref ? ll(stopsById[r.ref]) : [r.lat, r.lon]; });
+  L.polyline(path, { color: '#d62828', weight: 3 }).addTo(map);
+
+  // аэропорты
+  TRIP.airports.forEach(function (a) {
+    var m = L.marker(ll(a), {
+      keyboard: true, title: a.name + ' (' + a.code + ')', alt: a.name,
+      icon: L.divIcon({ className: '', html: '<div class="ar-airport" data-code="' + a.code + '">' + a.code + '</div>', iconSize: [38, 20], iconAnchor: [19, 10] })
+    }).addTo(map);
+    m.bindPopup(a.name + ' (' + a.code + '): ' + a.note, popupOpts());
+    m.on('click', function () { selectAirport(a.code, { fromMap: true }); });
+    markers['airport-' + a.code] = m;
+  });
+
+  // остановки
+  TRIP.stops.forEach(function (s) {
+    var m = L.marker(ll(s), {
+      keyboard: true, title: s.n + '. ' + s.name, alt: s.name, zIndexOffset: 500,
+      icon: L.divIcon({ className: '', html: '<div class="ar-marker" data-id="' + s.id + '">' + s.n + '</div>', iconSize: [30, 30], iconAnchor: [15, 15] })
+    }).addTo(map);
+    m.bindPopup(popupFor(s), popupOpts());
+    m.on('click', function () { selectStop(s.id, { fromMap: true }); });
+    markers[s.id] = m;
+  });
+
+  function setMarkerActive(key) {
+    document.querySelectorAll('#arMap .is-active').forEach(function (e) { e.classList.remove('is-active'); });
+    if (!key) return;
+    var el = markers[key] && markers[key].getElement();
+    var inner = el && el.firstChild;
+    if (inner) inner.classList.add('is-active');
+    current = key;
+  }
+
+  function showOnMap(key, latlng, zoom, opts) {
+    var mapEl = document.getElementById('arMap');
+    if (!opts.fromMap && !opts.noScroll && !inView(mapEl)) mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    var z = Math.max(map.getZoom(), zoom);
+    var c = map.getCenter();
+    var already = map.getZoom() >= z && Math.abs(c.lat - latlng[0]) + Math.abs(c.lng - latlng[1]) < 0.01;
+    map.closePopup();
+    setMarkerActive(key);
+    if (already) { markers[key].openPopup(); return; }
+    /* попап открываем после полёта: тогда автопрокрутка карты учитывает его высоту */
+    map.once('moveend', function () { markers[key].openPopup(); });
+    map.flyTo(latlng, z);
+  }
+
+  function selectStop(id, opts) {
+    opts = opts || {};
+    var s = stopsById[id]; if (!s) return;
+    showOnMap(id, ll(s), 7, opts);
+    highlight(id, !!opts.fromMap);
+    say('Показана точка ' + s.n + ': ' + s.name);
+  }
+
+  function selectAirport(code, opts) {
+    opts = opts || {};
+    var a = airportsByCode[code]; if (!a) return;
+    showOnMap('airport-' + code, ll(a), 7, opts);
+    highlight('airport-' + code, !!opts.fromMap);
+    say('Показан аэропорт ' + code + ': ' + a.name);
+  }
+
+  function bindRow(el, fn) {
+    el.addEventListener('click', function () { fn(); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); fn(); }
+    });
+  }
+  document.querySelectorAll('#arMapTable tr[data-stop]').forEach(function (tr) { bindRow(tr, function () { selectStop(tr.getAttribute('data-stop')); }); });
+  document.querySelectorAll('#arAirports li[data-airport]').forEach(function (li) { bindRow(li, function () { selectAirport(li.getAttribute('data-airport')); }); });
+
+  try {
+    var pts = path.concat(TRIP.airports.map(ll));
+    map.fitBounds(L.latLngBounds(pts).pad(0.1));
+  } catch (e) { map.setView([-35, -60], 5); }
+  setTimeout(function () { map.invalidateSize(); }, 200);
+
+  window.arMapApi = { map: map, markers: markers, selectStop: selectStop, selectAirport: selectAirport };
+
+  var m = /^#row-(stop-\d+)$/.exec(location.hash);
+  if (m && stopsById[m[1]]) selectStop(m[1], { noScroll: true });
+})();
+</script>
+
+</div>

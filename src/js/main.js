@@ -1,4 +1,18 @@
 /* BSGRO — main.js */
+// Архивный гард: скрывает [data-hide-after] после срока, показывает [data-show-after] при наступлении. Идемпотентна.
+window.bsgroApplyArchiveGuard = function () {
+  var now = Date.now();
+  document.querySelectorAll('[data-hide-after]').forEach(function (el) {
+    var t = Date.parse(el.getAttribute('data-hide-after'));
+    if (!isNaN(t) && now >= t) { el.style.display = 'none'; el.setAttribute('aria-hidden', 'true'); }
+  });
+  document.querySelectorAll('[data-show-after]').forEach(function (el) {
+    var t = Date.parse(el.getAttribute('data-show-after'));
+    if (!isNaN(t) && now >= t) { el.style.display = ''; el.hidden = false; }
+  });
+};
+window.bsgroApplyArchiveGuard();
+
 document.addEventListener('DOMContentLoaded', () => {
   // Fade-up on scroll
   const obs = new IntersectionObserver((entries) => {

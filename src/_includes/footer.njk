@@ -29,7 +29,11 @@
       <div class="col-md-2">
         <h5><i class="bi {{ fLinks.icon }} me-2"></i>{{ fLinks.heading }}</h5>
         {% for link in fLinks.links %}
+          {% if not link.hideAfterKey %}
           <p><a href="{{ link.url }}">{{ link.label }}</a></p>
+          {% elif archive[link.hideAfterKey] | visibleNow %}
+          <p data-hide-after="{{ archive[link.hideAfterKey] }}"><a href="{{ link.url }}">{{ link.label }}</a></p>
+          {% endif %}
         {% endfor %}
       </div>
 
