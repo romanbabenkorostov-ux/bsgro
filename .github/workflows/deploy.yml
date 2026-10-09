@@ -40,12 +40,6 @@ jobs:
       - name: Install dependencies
         run: npm ci || npm install
 
-      # Обновление данных IMF PCPS (сорго) — шаг не блокирующий:
-      # если IMF API недоступен, сборка продолжится со статическим JSON
-      - name: Fetch sorghum prices from IMF API
-        run: node scripts/fetch-sorghum.mjs || echo "⚠️ IMF API unavailable, using cached data"
-        continue-on-error: true
-
       - name: Build site (Eleventy)
         run: npm run build
 

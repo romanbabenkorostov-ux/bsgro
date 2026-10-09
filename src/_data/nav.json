@@ -6,32 +6,87 @@
       "pageId": "index"
     },
     {
-      "label": "Сорго",
-      "url": "/sorgo/",
-      "pageId": "sorgo"
-    },
-    {
-      "label": "Сироп",
-      "pageId": "sorgo-food",
+      "label": "Агроэксперименты",
+      "pageId": "agro",
       "dropdown": true,
       "children": [
-        { "label": "Сырьё и технология", "url": "/sorgo-food-1/", "icon": "bi-droplet", "pageId": "sorgo-food-1" },
-        { "label": "Применение в food",  "url": "/sorgo-food-2/", "icon": "bi-cup-straw", "pageId": "sorgo-food-2" },
-        { "label": "Внедрение и риски",  "url": "/sorgo-food-3/", "icon": "bi-rocket-takeoff", "pageId": "sorgo-food-3" }
+        {
+          "label": "Обзор",
+          "url": "/agro/",
+          "icon": "bi-grid",
+          "pageId": "agro"
+        },
+        {
+          "label": "Экономическая модель 2026",
+          "url": "/agro-economics/",
+          "icon": "bi-calculator",
+          "pageId": "agro-economics"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "header",
+          "label": "Сорго"
+        },
+        {
+          "label": "Проект диверсификации",
+          "url": "/sorgo-project/",
+          "icon": "bi-diagram-3",
+          "pageId": "sorgo-project"
+        },
+        {
+          "label": "Агрокультура",
+          "url": "/sorgo/",
+          "icon": "bi-tree",
+          "pageId": "sorgo"
+        },
+        {
+          "label": "Сироп: сырьё и технология",
+          "url": "/sorgo-food-1/",
+          "icon": "bi-droplet",
+          "pageId": "sorgo-food-1"
+        },
+        {
+          "label": "Сироп: применение в food",
+          "url": "/sorgo-food-2/",
+          "icon": "bi-cup-straw",
+          "pageId": "sorgo-food-2"
+        },
+        {
+          "label": "Сироп: внедрение и риски",
+          "url": "/sorgo-food-3/",
+          "icon": "bi-rocket-takeoff",
+          "pageId": "sorgo-food-3"
+        },
+        {
+          "label": "Экспорт: рынки и логистика",
+          "url": "/export-1/",
+          "icon": "bi-globe2",
+          "pageId": "export-1"
+        },
+        {
+          "label": "Экспорт: страны-партнёры",
+          "url": "/export-2/",
+          "icon": "bi-pin-map",
+          "pageId": "export-2"
+        },
+        {
+          "label": "Экспорт: мука и сироп",
+          "url": "/export-3/",
+          "icon": "bi-box-seam",
+          "pageId": "export-3"
+        },
+        {
+          "label": "Цены на сорго",
+          "url": "/sorgo-prices/",
+          "icon": "bi-graph-up",
+          "pageId": "sorgo-prices"
+        }
       ]
     },
     {
-      "label": "Экспорт",
-      "pageId": "export",
-      "dropdown": true,
-      "children": [
-        { "label": "Рынки и логистика",    "url": "/export-1/", "icon": "bi-globe2",   "pageId": "export-1" },
-        { "label": "Страны-партнёры",      "url": "/export-2/", "icon": "bi-pin-map",  "pageId": "export-2" },
-        { "label": "Мука и сироп",         "url": "/export-3/", "icon": "bi-box-seam", "pageId": "export-3" }
-      ]
-    },
-    {
-      "label": "Поездка",
+      "label": "Обмен опытом",
       "url": "/mission/",
       "pageId": "mission",
       "icon": "bi-globe-americas"
@@ -42,63 +97,197 @@
       "pageId": "_contacts"
     }
   ],
-
   "indexSections": [
-    { "label": "Главная",         "anchor": "#project" },
-    { "label": "Стратегия",       "anchor": "#strategy" },
-    { "label": "Продукты",        "anchor": "#products" },
-    { "label": "Переработка",     "anchor": "#processing" },
-    { "label": "Маржинальность",  "anchor": "#margin" },
-    { "label": "Контакты",        "anchor": "#contacts" }
+    {
+      "label": "Идея",
+      "anchor": "#idea"
+    },
+    {
+      "label": "Что сопровождаем",
+      "anchor": "#scope"
+    },
+    {
+      "label": "Данные",
+      "anchor": "#data"
+    },
+    {
+      "label": "Этапы",
+      "anchor": "#process"
+    },
+    {
+      "label": "Примеры",
+      "anchor": "#examples"
+    },
+    {
+      "label": "Обмен опытом",
+      "anchor": "#format"
+    },
+    {
+      "label": "Как начать",
+      "anchor": "#start"
+    },
+    {
+      "label": "Контакты",
+      "anchor": "#contacts"
+    }
   ],
-
   "footerLinks": {
     "index": {
       "heading": "Навигация",
       "icon": "bi-link-45deg",
       "links": [
-        { "label": "Сорго", "url": "/sorgo/" },
-        { "label": "О проекте",          "url": "#project" },
-        { "label": "Стратегия",          "url": "#strategy" },
-        { "label": "Маржинальность",     "url": "#margin" }
+        {
+          "label": "Агроэксперименты",
+          "url": "/agro/"
+        },
+        {
+          "label": "Идея",
+          "url": "#idea"
+        },
+        {
+          "label": "Что сопровождаем",
+          "url": "#scope"
+        },
+        {
+          "label": "Данные",
+          "url": "#data"
+        },
+        {
+          "label": "Обмен опытом",
+          "url": "/mission/"
+        }
+      ]
+    },
+    "agro": {
+      "heading": "Навигация",
+      "icon": "bi-link-45deg",
+      "links": [
+        {
+          "label": "Главная",
+          "url": "/"
+        },
+        {
+          "label": "Экономическая модель 2026",
+          "url": "/agro-economics/"
+        },
+        {
+          "label": "Сорго: проект",
+          "url": "/sorgo-project/"
+        },
+        {
+          "label": "Обмен опытом",
+          "url": "/mission/"
+        }
+      ]
+    },
+    "sorgo-project": {
+      "heading": "Навигация",
+      "icon": "bi-link-45deg",
+      "links": [
+        {
+          "label": "Главная",
+          "url": "/"
+        },
+        {
+          "label": "О проекте",
+          "url": "#project"
+        },
+        {
+          "label": "Стратегия",
+          "url": "#strategy"
+        },
+        {
+          "label": "Маржинальность",
+          "url": "#margin"
+        },
+        {
+          "label": "Агрокультура сорго",
+          "url": "/sorgo/"
+        }
       ]
     },
     "sorgo": {
       "heading": "Навигация",
       "icon": "bi-link-45deg",
       "links": [
-        { "label": "Главная",            "url": "/" },
-        { "label": "Глобальный обзор",   "url": "#sec1" },
-        { "label": "Ростовская область", "url": "#sec8" },
-        { "label": "Источники",          "url": "#sources" }
+        {
+          "label": "Главная",
+          "url": "/"
+        },
+        {
+          "label": "Проект диверсификации",
+          "url": "/sorgo-project/"
+        },
+        {
+          "label": "Глобальный обзор",
+          "url": "/sorgo/#sec1"
+        },
+        {
+          "label": "Ростовская область",
+          "url": "/sorgo/#sec8"
+        },
+        {
+          "label": "Источники",
+          "url": "/sorgo/#sources"
+        }
       ]
     },
     "sorgo-food": {
       "heading": "Сироп",
       "icon": "bi-link-45deg",
       "links": [
-        { "label": "Сырьё и технология", "url": "/sorgo-food-1/" },
-        { "label": "Применение в food",  "url": "/sorgo-food-2/" },
-        { "label": "Внедрение и риски",  "url": "/sorgo-food-3/" }
+        {
+          "label": "Сырьё и технология",
+          "url": "/sorgo-food-1/"
+        },
+        {
+          "label": "Применение в food",
+          "url": "/sorgo-food-2/"
+        },
+        {
+          "label": "Внедрение и риски",
+          "url": "/sorgo-food-3/"
+        }
       ]
     },
     "export": {
       "heading": "Экспорт",
       "icon": "bi-globe2",
       "links": [
-        { "label": "Рынки и логистика",  "url": "/export-1/" },
-        { "label": "Страны-партнёры",    "url": "/export-2/" },
-        { "label": "Мука и сироп",       "url": "/export-3/" }
+        {
+          "label": "Рынки и логистика",
+          "url": "/export-1/"
+        },
+        {
+          "label": "Страны-партнёры",
+          "url": "/export-2/"
+        },
+        {
+          "label": "Мука и сироп",
+          "url": "/export-3/"
+        }
       ]
     },
     "mission": {
-      "heading": "Поездка",
+      "heading": "Обмен опытом",
       "icon": "bi-globe-americas",
       "links": [
-        { "label": "Формат",    "url": "#format" },
-        { "label": "Модули",    "url": "#modules" },
-        { "label": "Партнёры",  "url": "#partners" },
-        { "label": "Логистика", "url": "#logistics" }
+        {
+          "label": "Формат",
+          "url": "#format"
+        },
+        {
+          "label": "Модули",
+          "url": "#modules"
+        },
+        {
+          "label": "Партнёры",
+          "url": "#partners"
+        },
+        {
+          "label": "Логистика",
+          "url": "#logistics"
+        }
       ]
     }
   }
