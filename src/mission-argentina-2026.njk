@@ -18,6 +18,7 @@ permalink: "/mission/argentina-2026/"
   .ar-marker.is-active { background:#d62828; transform:scale(1.35); box-shadow:0 0 0 4px rgba(214,40,40,.35); }
   .ar-airport { min-width:34px; height:20px; border-radius:10px; background:#1f6feb; color:#fff; border:1.5px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.4); font:700 11px/17px sans-serif; text-align:center; padding:0 4px; }
   .ar-airport.is-active { background:#d62828; }
+  .ar-hotel { width:26px; height:26px; border-radius:6px; background:#fff; color:#d62828; border:2px solid #d62828; box-shadow:0 1px 5px rgba(0,0,0,.4); font:700 12px/22px sans-serif; text-align:center; }
   .ar-legend { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; font-size:.85rem; margin-top:.75rem; }
   .ar-legend svg { vertical-align:middle; margin-right:.35rem; }
   .ar-num { display:inline-block; min-width:1.9rem; height:1.9rem; line-height:1.9rem; border-radius:50%; background:var(--clr-navy); color:#fff; text-align:center; font-weight:700; font-size:.85rem; }
@@ -84,7 +85,8 @@ permalink: "/mission/argentina-2026/"
     <div class="ar-legend">
       <span><svg width="36" height="8"><line x1="0" y1="4" x2="36" y2="4" stroke="#1f6feb" stroke-width="3"/></svg>перелёт туда</span>
       <span><svg width="36" height="8"><line x1="0" y1="4" x2="36" y2="4" stroke="#1f6feb" stroke-width="3" stroke-dasharray="6 8"/></svg>обратный перелёт, маршрут уточняется</span>
-      <span><svg width="36" height="8"><line x1="0" y1="4" x2="36" y2="4" stroke="#d62828" stroke-width="3"/></svg>наземный маршрут, схематично по прямой</span>
+      <span><svg width="36" height="8"><line x1="0" y1="4" x2="36" y2="4" stroke="#d62828" stroke-width="3"/></svg>наземный маршрут (включая трансфер EZE ↔ отель), схематично по прямой</span>
+      <span><span style="display:inline-block;width:16px;height:16px;border:2px solid #d62828;border-radius:4px;vertical-align:middle;margin-right:.35rem;"></span>отель Буэнос-Айреса (примерное расположение)</span>
     </div>
     <p class="small text-muted mt-2 mb-0">Координаты точек приблизительные (центры городов и аэропортов). Колесо мыши над картой меняет масштаб; при наведении на точку показывается карточка, клик левой кнопкой переводит к строке таблицы. Линии между пунктами нарисованы по прямой и не отражают дороги и реальные авиатрассы.</p>
     <p id="arLive" class="visually-hidden" aria-live="polite"></p>
@@ -198,6 +200,8 @@ permalink: "/mission/argentina-2026/"
     return { maxWidth: Math.max(180, Math.min(340, sz.x - 50)), maxHeight: Math.max(100, Math.round(sz.y / 2) - 50), closeButton: false, autoPan: false, closeOnClick: false, className: 'ar-hover-popup' };
   }
   TRIP.airports.forEach(function (a) { airportsByCode[a.code] = a; });
+  var hotelsById = {};
+  (TRIP.hotels || []).forEach(function (h) { hotelsById[h.id] = h; });
 
   function rowEl(id) { return document.getElementById('row-' + id); }
   function inView(el) { var r = el.getBoundingClientRect(); return r.top >= 70 && r.bottom <= window.innerHeight; }
@@ -230,6 +234,13 @@ permalink: "/mission/argentina-2026/"
     var d = document.createElement('div'); d.className = 'ar-popup';
     var h = document.createElement('strong'); h.textContent = a.name + ' (' + a.code + ')'; d.appendChild(h);
     var p = document.createElement('div'); p.textContent = a.note; d.appendChild(p);
+    return d;
+  }
+
+  function popupForHotel(h) {
+    var d = document.createElement('div'); d.className = 'ar-popup';
+    var t = document.createElement('strong'); t.textContent = h.name; d.appendChild(t);
+    [h.dates, h.note].forEach(function (x) { var p = document.createElement('div'); p.textContent = x; d.appendChild(p); });
     return d;
   }
 
@@ -268,9 +279,11 @@ permalink: "/mission/argentina-2026/"
   });
   var baseBlank = L.layerGroup([]);   /* «Белый лист»: пустая группа, чтобы не запрашивать тайлы */
   var gOut = L.layerGroup().addTo(map), gRet = L.layerGroup().addTo(map), gGround = L.layerGroup().addTo(map),
-      gStops = L.layerGroup().addTo(map), gAir = L.layerGroup().addTo(map);
+      gStops = L.layerGroup().addTo(map), gAir = L.layerGroup().addTo(map), gHotels = L.layerGroup().addTo(map);
 
   function ll(p) { return [p.lat, p.lon]; }
+  /* точка маршрута по ссылке: остановка, отель или аэропорт (airport-XXX) */
+  function refPoint(ref) { return stopsById[ref] || hotelsById[ref] || airportsByCode[ref.replace('airport-', '')]; }
   function bow(a, b) {
     var m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], dx = b[1] - a[1], dy = b[0] - a[0];
     return [a, [m[0] + dx * 0.06, m[1] - dy * 0.06], b];
@@ -286,7 +299,7 @@ permalink: "/mission/argentina-2026/"
   });
 
   // наземный маршрут
-  var path = TRIP.groundRoute.map(function (r) { return r.ref ? ll(stopsById[r.ref]) : [r.lat, r.lon]; });
+  var path = TRIP.groundRoute.map(function (r) { return r.ref ? ll(refPoint(r.ref)) : [r.lat, r.lon]; });
   L.polyline(path, { color: '#d62828', weight: 3 }).addTo(gGround);
 
   // аэропорты
@@ -311,6 +324,18 @@ permalink: "/mission/argentina-2026/"
     attachHover(m, s.n + '. ' + s.name);
     m.on('click', function (e) { if (isLeftClick(e)) selectStop(s.id, { fromMap: true }); });
     markers[s.id] = m;
+  });
+
+  // отели Буэнос-Айреса (примерное расположение); клик ведёт к строке «Буэнос-Айрес»
+  (TRIP.hotels || []).forEach(function (h) {
+    var m = L.marker(ll(h), {
+      keyboard: true, alt: h.name, zIndexOffset: 300,
+      icon: L.divIcon({ className: '', html: '<div class="ar-hotel" data-id="' + h.id + '"><i class="bi bi-building"></i>H</div>', iconSize: [26, 26], iconAnchor: [13, 13] })
+    }).addTo(gHotels);
+    m.bindPopup(popupForHotel(h), popupOpts());
+    attachHover(m, h.name + ' (примерное расположение)');
+    m.on('click', function (e) { if (isLeftClick(e)) selectStop('stop-1', { fromMap: true }); });
+    markers[h.id] = m;
   });
 
   function setMarkerActive(key) {
@@ -367,12 +392,12 @@ permalink: "/mission/argentina-2026/"
 
   L.control.layers(
     { 'Карта OpenStreetMap': baseOSM, 'Спутник (Esri)': baseSat, 'Белый лист': baseBlank },
-    { 'Перелёт туда': gOut, 'Обратный перелёт (маршрут уточняется)': gRet, 'Наземный маршрут': gGround, 'Остановки': gStops, 'Аэропорты': gAir },
+    { 'Перелёт туда': gOut, 'Обратный перелёт (маршрут уточняется)': gRet, 'Наземный маршрут': gGround, 'Остановки': gStops, 'Отели (примерно)': gHotels, 'Аэропорты': gAir },
     { collapsed: window.innerWidth < 768, position: 'topright' }
   ).addTo(map);
 
   try {
-    var pts = path.concat(TRIP.airports.map(ll));
+    var pts = path.concat(TRIP.airports.map(ll), (TRIP.hotels || []).map(ll));
     map.fitBounds(L.latLngBounds(pts).pad(0.1));
   } catch (e) { map.setView([-35, -60], 5); }
   setTimeout(function () { map.invalidateSize(); }, 200);
