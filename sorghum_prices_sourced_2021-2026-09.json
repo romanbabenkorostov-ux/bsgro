@@ -1,0 +1,2015 @@
+{
+  "schemaVersion": "2.0",
+  "retrievedAt": "2026-10-09",
+  "requestedPeriod": {
+    "start": "2021-01",
+    "end": "2026-09"
+  },
+  "status": "partial_sourced_multi_series_collection",
+  "completeHomogeneousMonthlySeries": false,
+  "dropInReplacementForExistingFile": false,
+  "sources": {
+    "pride_ag": {
+      "name": "Pride Ag Resources — Historical Grain Prices",
+      "url": "https://www.prideag.com/historical-price",
+      "locator": "PRIDE AG DAILY GRAIN PRICES AVERAGES; column MILO; individual monthly rows, not Total Average",
+      "type": "commercial_primary_publication",
+      "citation": "web:91",
+      "unitCaveat": "Extracted table does not explicitly state the unit. USD/bushel is a hypothesis only; normalization withheld."
+    },
+    "most_agro": {
+      "name": "MOST Agro — Texas Sorghum FOB Price per Ton",
+      "url": "https://most-agro.com/prices/history/ref-sorghum-texas",
+      "locator": "Texas Sorghum Price History — Weekly USD/MT; column Mid",
+      "type": "commercial_indicative_quotes",
+      "citation": "web:88",
+      "lastUpdated": "2026-09-03",
+      "caveat": "Indicative weekly mids; explicitly not confirmed trades or firm offers."
+    },
+    "nass_jan26": {
+      "name": "USDA NASS — Agricultural Prices, January 30, 2026",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+      "locator": "page 7, Prices Received for Field Crops and Fruits — United States; Sorghum grain; dollars/cwt",
+      "type": "official_statistics",
+      "citation": "web:82",
+      "publishedAt": "2026-01-30"
+    },
+    "nass_may26": {
+      "name": "USDA NASS — Agricultural Prices, May 29, 2026",
+      "url": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+      "locator": "page 7, Prices Received for Field Crops and Fruits — United States; Sorghum grain; dollars/cwt",
+      "type": "official_statistics",
+      "citation": "web:92",
+      "publishedAt": "2026-05-29"
+    },
+    "ycharts": {
+      "name": "YCharts — US Sorghum Price I:USSP0SDC",
+      "url": "https://ycharts.com/indicators/us_sorghum_price",
+      "locator": "Historical Data table",
+      "type": "secondary_republisher",
+      "citation": "web:45",
+      "declaredOriginalSource": "IMF Primary Commodity Prices",
+      "caveat": "Published unit USD/mt and numeric scale require independent verification; do not multiply by an assumed factor."
+    },
+    "cwt_definition": {
+      "name": "USDA NASS — Weights and Measures",
+      "url": "https://www.nass.usda.gov/Statistics_by_State/Delaware/Publications/Annual_Statistical_Bulletin/2009/Page29.pdf",
+      "citation": "web:102",
+      "locator": "1 hundredweight = 100 pounds"
+    }
+  },
+  "series": [
+    {
+      "id": "pride_ag_milo_monthly",
+      "description": "Commercial monthly average published in MILO column; not national average or export benchmark",
+      "frequency": "monthly",
+      "observations": [
+        {
+          "period": "2021-01",
+          "value": 6.43,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-02",
+          "value": 6.84,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-03",
+          "value": 6.66,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-04",
+          "value": 6.49,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-05",
+          "value": 7.28,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-06",
+          "value": 6.89,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-07",
+          "value": 6.12,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-08",
+          "value": 5.83,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-09",
+          "value": 5.37,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-10",
+          "value": 5.47,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-11",
+          "value": 5.86,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2021-12",
+          "value": 6.08,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-01",
+          "value": 6.23,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-02",
+          "value": 6.65,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-03",
+          "value": 7.44,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-04",
+          "value": 7.76,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-05",
+          "value": 7.74,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-06",
+          "value": 7.4,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-07",
+          "value": 6.12,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-08",
+          "value": 6.39,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-09",
+          "value": 7.21,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-10",
+          "value": 7.52,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-11",
+          "value": 7.38,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2022-12",
+          "value": 7.11,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-01",
+          "value": 7.14,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-02",
+          "value": 7.11,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-03",
+          "value": 6.73,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-04",
+          "value": 6.84,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-05",
+          "value": 6.31,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-06",
+          "value": 6.18,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-07",
+          "value": 5.29,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-08",
+          "value": 4.85,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-09",
+          "value": 4.64,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-10",
+          "value": 5.03,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-11",
+          "value": 4.85,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2023-12",
+          "value": 4.84,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-01",
+          "value": 4.53,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-02",
+          "value": 4.25,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-03",
+          "value": 4.26,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-04",
+          "value": 4.25,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-05",
+          "value": 4.45,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-06",
+          "value": 4.25,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-07",
+          "value": 3.83,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-08",
+          "value": 3.68,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-09",
+          "value": 3.89,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-10",
+          "value": 3.97,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-11",
+          "value": 4.09,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2024-12",
+          "value": 4.11,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-01",
+          "value": 4.22,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-02",
+          "value": 4.19,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-03",
+          "value": 3.83,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-04",
+          "value": 4.0,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-05",
+          "value": 3.78,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-06",
+          "value": 3.55,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-07",
+          "value": 3.26,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        },
+        {
+          "period": "2025-08",
+          "value": 3.1,
+          "unit": null,
+          "unitStatus": "not_explicit_in_extracted_table",
+          "sourceId": "pride_ag",
+          "sourceUrl": "https://www.prideag.com/historical-price",
+          "sourceColumn": "MILO",
+          "status": "published_value_unit_unverified"
+        }
+      ]
+    },
+    {
+      "id": "texas_fob_indicative_weekly",
+      "description": "Texas FOB indicative weekly mid quotes, not confirmed trades",
+      "frequency": "weekly",
+      "observations": [
+        {
+          "date": "2026-01-31",
+          "value": 222.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-02-07",
+          "value": 229.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-02-14",
+          "value": 227.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-02-21",
+          "value": 222.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-02-28",
+          "value": 227.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-03-07",
+          "value": 232.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-03-14",
+          "value": 237.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-03-21",
+          "value": 242.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-03-28",
+          "value": 242.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-04-04",
+          "value": 227.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-04-11",
+          "value": 222.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-04-18",
+          "value": 225,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-04-25",
+          "value": 227.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-05-02",
+          "value": 237.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-05-09",
+          "value": 232.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-05-16",
+          "value": 232.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-05-22",
+          "value": 232.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-05-30",
+          "value": 229.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-06-06",
+          "value": 217.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-06-13",
+          "value": 212.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-06-20",
+          "value": 213.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-06-27",
+          "value": 217.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-07-04",
+          "value": 219,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-07-11",
+          "value": 220,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-07-18",
+          "value": 230,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-07-25",
+          "value": 240,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-08-01",
+          "value": 232.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-08-08",
+          "value": 231,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-08-15",
+          "value": 233.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-08-22",
+          "value": 246,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        },
+        {
+          "date": "2026-08-29",
+          "value": 257.5,
+          "unit": "USD/metric_ton",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "indicative_quote_not_transaction"
+        }
+      ]
+    },
+    {
+      "id": "us_nass_sorghum_farm_price_monthly",
+      "description": "United States monthly prices received by farmers for sorghum grain; distinct from FOB export price",
+      "frequency": "monthly",
+      "observations": [
+        {
+          "period": "2024-12",
+          "value": 7.21,
+          "unit": "USD/US_cwt",
+          "normalizedValue": 158.953,
+          "normalizedUnit": "USD/metric_ton",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "conversionSourceId": "cwt_definition",
+          "sourceId": "nass_jan26",
+          "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+          "sourcePage": 7,
+          "sourceColumn": "December 2024",
+          "status": "official_published_estimate_at_source_vintage"
+        },
+        {
+          "period": "2025-04",
+          "value": 7.6,
+          "unit": "USD/US_cwt",
+          "normalizedValue": 167.551,
+          "normalizedUnit": "USD/metric_ton",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "conversionSourceId": "cwt_definition",
+          "sourceId": "nass_may26",
+          "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+          "sourcePage": 7,
+          "sourceColumn": "April 2025",
+          "status": "official_published_estimate_at_source_vintage"
+        },
+        {
+          "period": "2025-11",
+          "value": 6.05,
+          "unit": "USD/US_cwt",
+          "normalizedValue": 133.38,
+          "normalizedUnit": "USD/metric_ton",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "conversionSourceId": "cwt_definition",
+          "sourceId": "nass_jan26",
+          "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+          "sourcePage": 7,
+          "sourceColumn": "November 2025",
+          "status": "official_published_estimate_at_source_vintage"
+        },
+        {
+          "period": "2025-12",
+          "value": 6.04,
+          "unit": "USD/US_cwt",
+          "normalizedValue": 133.159,
+          "normalizedUnit": "USD/metric_ton",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "conversionSourceId": "cwt_definition",
+          "sourceId": "nass_jan26",
+          "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+          "sourcePage": 7,
+          "sourceColumn": "December 2025",
+          "status": "official_published_estimate_at_source_vintage"
+        },
+        {
+          "period": "2026-03",
+          "value": 6.93,
+          "unit": "USD/US_cwt",
+          "normalizedValue": 152.78,
+          "normalizedUnit": "USD/metric_ton",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "conversionSourceId": "cwt_definition",
+          "sourceId": "nass_may26",
+          "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+          "sourcePage": 7,
+          "sourceColumn": "March 2026",
+          "status": "official_published_estimate_at_source_vintage"
+        },
+        {
+          "period": "2026-04",
+          "value": 6.73,
+          "unit": "USD/US_cwt",
+          "normalizedValue": 148.371,
+          "normalizedUnit": "USD/metric_ton",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "conversionSourceId": "cwt_definition",
+          "sourceId": "nass_may26",
+          "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+          "sourcePage": 7,
+          "sourceColumn": "April 2026",
+          "status": "official_published_estimate_at_source_vintage"
+        }
+      ]
+    }
+  ],
+  "derivedSeries": [
+    {
+      "id": "texas_fob_available_weekly_mids_monthly_mean",
+      "observations": [
+        {
+          "period": "2026-01",
+          "value": 222.5,
+          "unit": "USD/metric_ton",
+          "measurementCount": 1,
+          "inputDates": [
+            "2026-01-31"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": "Only one available January observation"
+        },
+        {
+          "period": "2026-02",
+          "value": 226.75,
+          "unit": "USD/metric_ton",
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-02-07",
+            "2026-02-14",
+            "2026-02-21",
+            "2026-02-28"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": null
+        },
+        {
+          "period": "2026-03",
+          "value": 238.75,
+          "unit": "USD/metric_ton",
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-03-07",
+            "2026-03-14",
+            "2026-03-21",
+            "2026-03-28"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": null
+        },
+        {
+          "period": "2026-04",
+          "value": 225.625,
+          "unit": "USD/metric_ton",
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-04-04",
+            "2026-04-11",
+            "2026-04-18",
+            "2026-04-25"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": null
+        },
+        {
+          "period": "2026-05",
+          "value": 232.9,
+          "unit": "USD/metric_ton",
+          "measurementCount": 5,
+          "inputDates": [
+            "2026-05-02",
+            "2026-05-09",
+            "2026-05-16",
+            "2026-05-22",
+            "2026-05-30"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": null
+        },
+        {
+          "period": "2026-06",
+          "value": 215.25,
+          "unit": "USD/metric_ton",
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-06-06",
+            "2026-06-13",
+            "2026-06-20",
+            "2026-06-27"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": null
+        },
+        {
+          "period": "2026-07",
+          "value": 227.25,
+          "unit": "USD/metric_ton",
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-07-04",
+            "2026-07-11",
+            "2026-07-18",
+            "2026-07-25"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": null
+        },
+        {
+          "period": "2026-08",
+          "value": 240.1,
+          "unit": "USD/metric_ton",
+          "measurementCount": 5,
+          "inputDates": [
+            "2026-08-01",
+            "2026-08-08",
+            "2026-08-15",
+            "2026-08-22",
+            "2026-08-29"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "status": "derived_from_published_indicative_quotes",
+          "coverageCaveat": null
+        },
+        {
+          "period": "2026-09",
+          "value": null,
+          "unit": "USD/metric_ton",
+          "measurementCount": 0,
+          "sourceId": null,
+          "status": "not_retrieved"
+        }
+      ]
+    }
+  ],
+  "quarantinedSeries": [
+    {
+      "id": "ycharts_imf_sorghum_reported_values",
+      "observations": [
+        {
+          "period": "2022-06",
+          "publishedValue": 16.87,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2022-07",
+          "publishedValue": 14.48,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2022-08",
+          "publishedValue": 15.64,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2022-09",
+          "publishedValue": 17.54,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2022-10",
+          "publishedValue": 17.09,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2022-11",
+          "publishedValue": 16.95,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2022-12",
+          "publishedValue": 16.21,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-01",
+          "publishedValue": 16.63,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-02",
+          "publishedValue": 16.65,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-03",
+          "publishedValue": 16.13,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-04",
+          "publishedValue": 16.63,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-05",
+          "publishedValue": 15.62,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-06",
+          "publishedValue": 15.44,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-07",
+          "publishedValue": 13.55,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-08",
+          "publishedValue": 12.59,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-09",
+          "publishedValue": 12.46,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-10",
+          "publishedValue": 12.64,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-11",
+          "publishedValue": 12.44,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2023-12",
+          "publishedValue": 12.56,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-01",
+          "publishedValue": 12.0,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-02",
+          "publishedValue": 11.28,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-03",
+          "publishedValue": 11.23,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-04",
+          "publishedValue": 11.18,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-05",
+          "publishedValue": 11.58,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-06",
+          "publishedValue": 11.06,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-07",
+          "publishedValue": 10.05,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-08",
+          "publishedValue": 9.532,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-09",
+          "publishedValue": 9.68,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-10",
+          "publishedValue": 9.698,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-11",
+          "publishedValue": 11.11,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2024-12",
+          "publishedValue": 10.76,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-01",
+          "publishedValue": 11.31,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-02",
+          "publishedValue": 11.13,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-03",
+          "publishedValue": 9.508,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-04",
+          "publishedValue": 9.804,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-05",
+          "publishedValue": 9.015,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-06",
+          "publishedValue": 8.399,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-07",
+          "publishedValue": 7.734,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-08",
+          "publishedValue": 7.734,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-09",
+          "publishedValue": 7.734,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-10",
+          "publishedValue": 8.572,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-11",
+          "publishedValue": 8.769,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2025-12",
+          "publishedValue": 8.843,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2026-01",
+          "publishedValue": 8.523,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2026-02",
+          "publishedValue": 8.498,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2026-03",
+          "publishedValue": 9.409,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2026-04",
+          "publishedValue": 9.434,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2026-05",
+          "publishedValue": 9.743,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2026-06",
+          "publishedValue": 8.316,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        },
+        {
+          "period": "2026-07",
+          "publishedValue": 9.318,
+          "publishedUnit": "USD/metric_ton",
+          "sourceId": "ycharts",
+          "sourceUrl": "https://ycharts.com/indicators/us_sorghum_price",
+          "status": "quarantined_unit_scale_requires_verification",
+          "eligibleForPriceChart": false
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "publishedNonQuarantinedObservationCount": 93,
+    "publishedObservationsWithExplicitUnitCount": 37,
+    "prideMonthlyCount": 56,
+    "mostAgroWeeklyCount": 31,
+    "nassMonthlyCount": 6,
+    "quarantinedCount": 50,
+    "september2026PriceRetrieved": false
+  },
+  "rules": [
+    "Do not splice farm-gate, local commercial, and FOB export prices into one line.",
+    "Do not present commercial quotes as IMF data.",
+    "Do not interpret missing September price as zero.",
+    "Derived monthly means are not new independent measurements.",
+    "Pride table unit must be confirmed before normalization or publication as USD/bushel.",
+    "Quarantined YCharts values must not be silently rescaled.",
+    "No seed, FAO proxy, interpolation, or extrapolation used."
+  ],
+  "monthlyCoverage": [
+    {
+      "period": "2021-01",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-02",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-03",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-04",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-05",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-06",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-07",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-08",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-09",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-10",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-11",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2021-12",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-01",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-02",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-03",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-04",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-05",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-06",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-07",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-08",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-09",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-10",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-11",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2022-12",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-01",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-02",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-03",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-04",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-05",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-06",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-07",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-08",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-09",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-10",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-11",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2023-12",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-01",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-02",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-03",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-04",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-05",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-06",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-07",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-08",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-09",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-10",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-11",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2024-12",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly",
+        "us_nass_sorghum_farm_price_monthly"
+      ]
+    },
+    {
+      "period": "2025-01",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2025-02",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2025-03",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2025-04",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly",
+        "us_nass_sorghum_farm_price_monthly"
+      ]
+    },
+    {
+      "period": "2025-05",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2025-06",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2025-07",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2025-08",
+      "sourceSeriesWithPublishedObservation": [
+        "pride_ag_milo_monthly"
+      ]
+    },
+    {
+      "period": "2025-09",
+      "sourceSeriesWithPublishedObservation": []
+    },
+    {
+      "period": "2025-10",
+      "sourceSeriesWithPublishedObservation": []
+    },
+    {
+      "period": "2025-11",
+      "sourceSeriesWithPublishedObservation": [
+        "us_nass_sorghum_farm_price_monthly"
+      ]
+    },
+    {
+      "period": "2025-12",
+      "sourceSeriesWithPublishedObservation": [
+        "us_nass_sorghum_farm_price_monthly"
+      ]
+    },
+    {
+      "period": "2026-01",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly"
+      ]
+    },
+    {
+      "period": "2026-02",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly"
+      ]
+    },
+    {
+      "period": "2026-03",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly",
+        "us_nass_sorghum_farm_price_monthly"
+      ]
+    },
+    {
+      "period": "2026-04",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly",
+        "us_nass_sorghum_farm_price_monthly"
+      ]
+    },
+    {
+      "period": "2026-05",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly"
+      ]
+    },
+    {
+      "period": "2026-06",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly"
+      ]
+    },
+    {
+      "period": "2026-07",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly"
+      ]
+    },
+    {
+      "period": "2026-08",
+      "sourceSeriesWithPublishedObservation": [
+        "texas_fob_indicative_weekly"
+      ]
+    },
+    {
+      "period": "2026-09",
+      "sourceSeriesWithPublishedObservation": []
+    }
+  ]
+}
