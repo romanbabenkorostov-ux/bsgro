@@ -31,7 +31,7 @@ permalink: "/sorgo-prices/"
           <i class="bi bi-graph-up-arrow me-2"></i>Цены на сорго: Texas FOB и США
         </h1>
         <p class="mb-0" style="opacity:0.85; max-width:760px;">
-          Период: 2021-01 … 2026-09 (последняя доступная точка — 2026-08-29)&ensp;·&ensp;USD за метрическую тонну<br>
+          Период: {{ sorghumPrices.meta.periodStart }} … {{ sorghumPrices.meta.periodEnd }} (последняя доступная точка — {{ sorghumPrices.meta.lastAvailablePoint }})&ensp;·&ensp;USD за метрическую тонну<br>
           Источники: <strong>MOST Agro</strong> (Texas FOB, индикативные котировки) и <strong>USDA NASS</strong> (цена, полученная фермерами США). Ряды разнородны и показаны раздельно.
         </p>
       </div>
@@ -59,6 +59,7 @@ permalink: "/sorgo-prices/"
 
     <!-- Карточки по сериям (считаются из данных в JS) -->
     <div class="row g-3 mt-3" id="statsRow"></div>
+    <div id="outOfRange"></div>
 
     <!-- Источники и ограничения -->
     <h2 class="h4 mt-5 mb-3" id="sources"><i class="bi bi-journal-text me-2"></i>Источники и ограничения</h2>
@@ -131,7 +132,9 @@ permalink: "/sorgo-prices/"
 
   var DATA = {{ sorghumPrices | dump | safe }};
   var DAY = 86400000;
-  var X_MIN = Date.UTC(2021, 0, 1), X_MAX = Date.UTC(2026, 9, 1); // 2021-01 … конец 2026-09
+  var START = DATA.meta.periodStart; // '2026-01'
+  var X_MIN = Date.UTC(+START.split('-')[0], +START.split('-')[1] - 1, 1), X_MAX = Date.UTC(2026, 9, 1); // 2026-01 … конец 2026-09
+  function inRange(o) { return (o.date || o.period).slice(0, 7) >= START; }
   var MONTHS = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
   var STYLE = {
     texas_fob_indicative_weekly: { color: '#2E7D32', radius: 3.5, dash: [] },
@@ -148,7 +151,7 @@ permalink: "/sorgo-prices/"
   /* Точки {x,y}; между несмежными наблюдениями вставляется null → линия рвётся */
   function toPoints(s) {
     var pts = [], prev = null;
-    s.observations.forEach(function (o) {
+    s.observations.filter(inRange).forEach(function (o) {
       var t = ts(o);
       var gap = prev === null ? false :
         (s.frequency === 'weekly' ? (t - prev.t) > 10 * DAY : (monthIdx(o) - prev.m) > 1);
@@ -234,12 +237,12 @@ permalink: "/sorgo-prices/"
             grid: { color: 'rgba(0,0,0,0.04)' },
             afterBuildTicks: function (axis) {
               var t = [];
-              for (var y = 2021; y <= 2026; y++) { t.push({ value: Date.UTC(y, 0, 1) }); t.push({ value: Date.UTC(y, 6, 1) }); }
+              for (var m = 0; m <= 8; m++) { t.push({ value: Date.UTC(2026, m, 1) }); }
               axis.ticks = t;
             },
             ticks: {
               font: { family: 'Montserrat', size: 11 }, color: '#5A6268', maxRotation: 0,
-              callback: function (v) { var d = new Date(v); return d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0'); }
+              callback: function (v) { var d = new Date(v); return MONTHS[d.getUTCMonth()] + ' ' + d.getUTCFullYear(); }
             }
           },
           y: {
@@ -257,7 +260,7 @@ permalink: "/sorgo-prices/"
     var row = document.getElementById('statsRow');
     row.innerHTML = '';
     DATA.series.forEach(function (s) {
-      var obs = s.observations.filter(function (o) { return o.value != null; });
+      var obs = s.observations.filter(function (o) { return o.value != null && inRange(o); });
       if (!obs.length) return;
       var mx = obs[0], mn = obs[0];
       obs.forEach(function (o) { if (o.value > mx.value) mx = o; if (o.value < mn.value) mn = o; });
@@ -277,11 +280,30 @@ permalink: "/sorgo-prices/"
     });
   }
 
+  /* Значения до начала оси графика — не теряем, показываем таблицей */
+  function renderOutOfRange() {
+    var box = document.getElementById('outOfRange'), rows = '', srcById = {};
+    DATA.sources.forEach(function (x) { srcById[x.id] = x; });
+    DATA.series.forEach(function (s) {
+      s.observations.filter(function (o) { return o.value != null && !inRange(o); }).forEach(function (o) {
+        var src = srcById[o.sourceId] || {};
+        rows += '<tr><td>' + s.label + '</td><td>' + dateLabel(o) + '</td><td>$' + o.value.toFixed(1) + ' / т</td><td>' +
+          (o.originalValue != null ? o.originalValue + ' ' + (o.originalUnit || '') : '—') + '</td><td>' +
+          (o.sourceUrl ? '<a href="' + o.sourceUrl + '" target="_blank" rel="noopener">' + (src.name || o.sourceId) + '</a>' : (src.name || o.sourceId)) + '</td></tr>';
+      });
+    });
+    if (!rows) return;
+    box.innerHTML = '<h2 class="h4 mt-5 mb-3" id="before-axis"><i class="bi bi-clock-history me-2"></i>Значения вне диапазона графика (до ' + START + ')</h2>' +
+      '<p class="text-muted small">Эти наблюдения опубликованы в источнике, но ось графика начинается с ' + START + '. Показаны таблицей, чтобы не терять данные.</p>' +
+      '<div class="table-responsive table-bsgro"><table class="table table-striped mb-0"><thead><tr><th>Ряд</th><th>Период</th><th>USD/т</th><th>Исходное значение</th><th>Источник</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('chartPeriod').textContent =
       'Ось: ' + DATA.meta.periodStart + ' — ' + DATA.meta.periodEnd + ' · последняя доступная точка: ' + DATA.meta.lastAvailablePoint;
     renderChart();
     renderStats();
+    renderOutOfRange();
   });
 })();
 </script>

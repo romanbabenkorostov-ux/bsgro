@@ -1,539 +1,540 @@
 {
- "meta": {
-  "schemaVersion": "3.0",
-  "periodStart": "2021-01",
-  "periodEnd": "2026-09",
-  "retrievedAt": "2026-10-09",
-  "lastAvailablePoint": "2026-08-29",
-  "status": "partial_sourced_multi_series_collection",
-  "september2026Note": "Данные за сентябрь 2026 не получены. Месяц отсутствует в наблюдениях и не считается нулём.",
-  "rules": [
-   "Do not splice farm-gate, local commercial, and FOB export prices into one line.",
-   "Do not present commercial quotes as IMF data.",
-   "Do not interpret missing September price as zero.",
-   "Derived monthly means are not new independent measurements.",
-   "Pride table unit must be confirmed before normalization or publication as USD/bushel.",
-   "Quarantined YCharts values must not be silently rescaled.",
-   "No seed, FAO proxy, interpolation, or extrapolation used."
+  "meta": {
+    "schemaVersion": "3.0",
+    "periodStart": "2026-01",
+    "periodEnd": "2026-09",
+    "retrievedAt": "2026-10-09",
+    "lastAvailablePoint": "2026-08-29",
+    "status": "partial_sourced_multi_series_collection",
+    "september2026Note": "Данные за сентябрь 2026 не получены. Месяц отсутствует в наблюдениях и не считается нулём.",
+    "rules": [
+      "Do not splice farm-gate, local commercial, and FOB export prices into one line.",
+      "Do not present commercial quotes as IMF data.",
+      "Do not interpret missing September price as zero.",
+      "Derived monthly means are not new independent measurements.",
+      "Pride table unit must be confirmed before normalization or publication as USD/bushel.",
+      "Quarantined YCharts values must not be silently rescaled.",
+      "No seed, FAO proxy, interpolation, or extrapolation used."
+    ],
+    "derivedFromFile": "sorghum_prices_sourced_2021-2026-09.json (схема 2.0)",
+    "chartPeriodNote": "Ось графика начинается с 2026-01; значения ряда NASS до 2026-01 вынесены в таблицу под графиком."
+  },
+  "sources": [
+    {
+      "id": "most_agro",
+      "name": "MOST Agro — Texas Sorghum FOB Price per Ton",
+      "url": "https://most-agro.com/prices/history/ref-sorghum-texas",
+      "locator": "Texas Sorghum Price History — Weekly USD/MT; column Mid",
+      "type": "commercial_indicative_quotes",
+      "taken": "Недельные индикативные котировки Texas FOB (колонка Mid), USD/т; на их основе посчитано месячное среднее",
+      "citation": "web:88",
+      "lastUpdated": "2026-09-03",
+      "caveat": "Indicative weekly mids; explicitly not confirmed trades or firm offers."
+    },
+    {
+      "id": "nass_jan26",
+      "name": "USDA NASS — Agricultural Prices, January 30, 2026",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+      "locator": "page 7, Prices Received for Field Crops and Fruits — United States; Sorghum grain; dollars/cwt",
+      "type": "official_statistics",
+      "taken": "Цена, полученная фермерами США, сорго (зерно): декабрь 2024, ноябрь и декабрь 2025; USD/cwt",
+      "citation": "web:82",
+      "publishedAt": "2026-01-30"
+    },
+    {
+      "id": "nass_may26",
+      "name": "USDA NASS — Agricultural Prices, May 29, 2026",
+      "url": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+      "locator": "page 7, Prices Received for Field Crops and Fruits — United States; Sorghum grain; dollars/cwt",
+      "type": "official_statistics",
+      "taken": "Цена, полученная фермерами США, сорго (зерно): апрель 2025, март и апрель 2026; USD/cwt",
+      "citation": "web:92",
+      "publishedAt": "2026-05-29"
+    },
+    {
+      "id": "cwt_definition",
+      "name": "USDA NASS — Weights and Measures",
+      "url": "https://www.nass.usda.gov/Statistics_by_State/Delaware/Publications/Annual_Statistical_Bulletin/2009/Page29.pdf",
+      "locator": "1 hundredweight = 100 pounds",
+      "type": "reference_definition",
+      "taken": "Определение 1 cwt = 100 фунтов (для пересчёта USD/cwt → USD/т)",
+      "citation": "web:102"
+    },
+    {
+      "id": "pride_ag",
+      "name": "Pride Ag Resources — Historical Grain Prices",
+      "url": "https://www.prideag.com/historical-price",
+      "locator": "PRIDE AG DAILY GRAIN PRICES AVERAGES; column MILO; individual monthly rows, not Total Average",
+      "type": "commercial_primary_publication",
+      "taken": "Не выведено на график: коммерческая цена MILO, 56 месяцев; единица в таблице не указана",
+      "citation": "web:91",
+      "unitCaveat": "Extracted table does not explicitly state the unit. USD/bushel is a hypothesis only; normalization withheld."
+    },
+    {
+      "id": "ycharts",
+      "name": "YCharts — US Sorghum Price I:USSP0SDC",
+      "url": "https://ycharts.com/indicators/us_sorghum_price",
+      "locator": "Historical Data table",
+      "type": "secondary_republisher",
+      "taken": "Не выведено на график: карантин, 50 значений; масштаб единиц не подтверждён",
+      "citation": "web:45",
+      "caveat": "Published unit USD/mt and numeric scale require independent verification; do not multiply by an assumed factor.",
+      "declaredOriginalSource": "IMF Primary Commodity Prices"
+    }
   ],
-  "derivedFromFile": "sorghum_prices_sourced_2021-2026-09.json (схема 2.0)"
- },
- "sources": [
-  {
-   "id": "most_agro",
-   "name": "MOST Agro — Texas Sorghum FOB Price per Ton",
-   "url": "https://most-agro.com/prices/history/ref-sorghum-texas",
-   "locator": "Texas Sorghum Price History — Weekly USD/MT; column Mid",
-   "type": "commercial_indicative_quotes",
-   "taken": "Недельные индикативные котировки Texas FOB (колонка Mid), USD/т; на их основе посчитано месячное среднее",
-   "citation": "web:88",
-   "lastUpdated": "2026-09-03",
-   "caveat": "Indicative weekly mids; explicitly not confirmed trades or firm offers."
-  },
-  {
-   "id": "nass_jan26",
-   "name": "USDA NASS — Agricultural Prices, January 30, 2026",
-   "url": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
-   "locator": "page 7, Prices Received for Field Crops and Fruits — United States; Sorghum grain; dollars/cwt",
-   "type": "official_statistics",
-   "taken": "Цена, полученная фермерами США, сорго (зерно): декабрь 2024, ноябрь и декабрь 2025; USD/cwt",
-   "citation": "web:82",
-   "publishedAt": "2026-01-30"
-  },
-  {
-   "id": "nass_may26",
-   "name": "USDA NASS — Agricultural Prices, May 29, 2026",
-   "url": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
-   "locator": "page 7, Prices Received for Field Crops and Fruits — United States; Sorghum grain; dollars/cwt",
-   "type": "official_statistics",
-   "taken": "Цена, полученная фермерами США, сорго (зерно): апрель 2025, март и апрель 2026; USD/cwt",
-   "citation": "web:92",
-   "publishedAt": "2026-05-29"
-  },
-  {
-   "id": "cwt_definition",
-   "name": "USDA NASS — Weights and Measures",
-   "url": "https://www.nass.usda.gov/Statistics_by_State/Delaware/Publications/Annual_Statistical_Bulletin/2009/Page29.pdf",
-   "locator": "1 hundredweight = 100 pounds",
-   "type": "reference_definition",
-   "taken": "Определение 1 cwt = 100 фунтов (для пересчёта USD/cwt → USD/т)",
-   "citation": "web:102"
-  },
-  {
-   "id": "pride_ag",
-   "name": "Pride Ag Resources — Historical Grain Prices",
-   "url": "https://www.prideag.com/historical-price",
-   "locator": "PRIDE AG DAILY GRAIN PRICES AVERAGES; column MILO; individual monthly rows, not Total Average",
-   "type": "commercial_primary_publication",
-   "taken": "Не выведено на график: коммерческая цена MILO, 56 месяцев; единица в таблице не указана",
-   "citation": "web:91",
-   "unitCaveat": "Extracted table does not explicitly state the unit. USD/bushel is a hypothesis only; normalization withheld."
-  },
-  {
-   "id": "ycharts",
-   "name": "YCharts — US Sorghum Price I:USSP0SDC",
-   "url": "https://ycharts.com/indicators/us_sorghum_price",
-   "locator": "Historical Data table",
-   "type": "secondary_republisher",
-   "taken": "Не выведено на график: карантин, 50 значений; масштаб единиц не подтверждён",
-   "citation": "web:45",
-   "caveat": "Published unit USD/mt and numeric scale require independent verification; do not multiply by an assumed factor.",
-   "declaredOriginalSource": "IMF Primary Commodity Prices"
-  }
- ],
- "series": [
-  {
-   "id": "texas_fob_indicative_weekly",
-   "label": "Texas FOB, индикативные недельные котировки",
-   "unit": "USD/т (метрическая тонна)",
-   "frequency": "weekly",
-   "kind": "source",
-   "description": "Индикативные недельные mid-котировки Texas FOB; не подтверждённые сделки и не твёрдые оферты.",
-   "observations": [
+  "series": [
     {
-     "date": "2026-01-31",
-     "value": 222.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+      "id": "texas_fob_indicative_weekly",
+      "label": "Texas FOB, индикативные недельные котировки",
+      "unit": "USD/т (метрическая тонна)",
+      "frequency": "weekly",
+      "kind": "source",
+      "description": "Индикативные недельные mid-котировки Texas FOB; не подтверждённые сделки и не твёрдые оферты.",
+      "observations": [
+        {
+          "date": "2026-01-31",
+          "value": 222.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-02-07",
+          "value": 229.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-02-14",
+          "value": 227.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-02-21",
+          "value": 222.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-02-28",
+          "value": 227.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-03-07",
+          "value": 232.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-03-14",
+          "value": 237.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-03-21",
+          "value": 242.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-03-28",
+          "value": 242.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-04-04",
+          "value": 227.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-04-11",
+          "value": 222.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-04-18",
+          "value": 225,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-04-25",
+          "value": 227.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-05-02",
+          "value": 237.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-05-09",
+          "value": 232.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-05-16",
+          "value": 232.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-05-22",
+          "value": 232.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-05-30",
+          "value": 229.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-06-06",
+          "value": 217.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-06-13",
+          "value": 212.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-06-20",
+          "value": 213.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-06-27",
+          "value": 217.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-07-04",
+          "value": 219,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-07-11",
+          "value": 220,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-07-18",
+          "value": 230,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-07-25",
+          "value": 240,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-08-01",
+          "value": 232.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-08-08",
+          "value": 231,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-08-15",
+          "value": 233.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-08-22",
+          "value": 246,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "date": "2026-08-29",
+          "value": 257.5,
+          "status": "indicative_quote_not_transaction",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        }
+      ]
     },
     {
-     "date": "2026-02-07",
-     "value": 229.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+      "id": "texas_fob_available_weekly_mids_monthly_mean",
+      "label": "Texas FOB, среднее по доступным неделям за месяц",
+      "unit": "USD/т (метрическая тонна)",
+      "frequency": "monthly",
+      "kind": "derived",
+      "description": "Производный ряд: среднее арифметическое доступных недельных mid-котировок за месяц. Не независимое измерение и не среднемесячная цена по дням.",
+      "observations": [
+        {
+          "period": "2026-01",
+          "value": 222.5,
+          "measurementCount": 1,
+          "inputDates": [
+            "2026-01-31"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
+          "coverageCaveat": "Only one available January observation"
+        },
+        {
+          "period": "2026-02",
+          "value": 226.75,
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-02-07",
+            "2026-02-14",
+            "2026-02-21",
+            "2026-02-28"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "period": "2026-03",
+          "value": 238.75,
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-03-07",
+            "2026-03-14",
+            "2026-03-21",
+            "2026-03-28"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "period": "2026-04",
+          "value": 225.625,
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-04-04",
+            "2026-04-11",
+            "2026-04-18",
+            "2026-04-25"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "period": "2026-05",
+          "value": 232.9,
+          "measurementCount": 5,
+          "inputDates": [
+            "2026-05-02",
+            "2026-05-09",
+            "2026-05-16",
+            "2026-05-22",
+            "2026-05-30"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "period": "2026-06",
+          "value": 215.25,
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-06-06",
+            "2026-06-13",
+            "2026-06-20",
+            "2026-06-27"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "period": "2026-07",
+          "value": 227.25,
+          "measurementCount": 4,
+          "inputDates": [
+            "2026-07-04",
+            "2026-07-11",
+            "2026-07-18",
+            "2026-07-25"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        },
+        {
+          "period": "2026-08",
+          "value": 240.1,
+          "measurementCount": 5,
+          "inputDates": [
+            "2026-08-01",
+            "2026-08-08",
+            "2026-08-15",
+            "2026-08-22",
+            "2026-08-29"
+          ],
+          "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
+          "status": "derived_from_published_indicative_quotes",
+          "sourceId": "most_agro",
+          "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+        }
+      ]
     },
     {
-     "date": "2026-02-14",
-     "value": 227.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-02-21",
-     "value": 222.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-02-28",
-     "value": 227.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-03-07",
-     "value": 232.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-03-14",
-     "value": 237.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-03-21",
-     "value": 242.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-03-28",
-     "value": 242.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-04-04",
-     "value": 227.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-04-11",
-     "value": 222.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-04-18",
-     "value": 225,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-04-25",
-     "value": 227.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-05-02",
-     "value": 237.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-05-09",
-     "value": 232.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-05-16",
-     "value": 232.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-05-22",
-     "value": 232.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-05-30",
-     "value": 229.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-06-06",
-     "value": 217.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-06-13",
-     "value": 212.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-06-20",
-     "value": 213.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-06-27",
-     "value": 217.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-07-04",
-     "value": 219,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-07-11",
-     "value": 220,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-07-18",
-     "value": 230,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-07-25",
-     "value": 240,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-08-01",
-     "value": 232.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-08-08",
-     "value": 231,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-08-15",
-     "value": 233.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-08-22",
-     "value": 246,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "date": "2026-08-29",
-     "value": 257.5,
-     "status": "indicative_quote_not_transaction",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+      "id": "us_nass_sorghum_farm_price_monthly",
+      "label": "США, цена, полученная фермерами (USDA NASS)",
+      "unit": "USD/т (метрическая тонна), пересчёт из USD/cwt",
+      "frequency": "monthly",
+      "kind": "source",
+      "description": "Месячные цены, полученные фермерами США за зерно сорго; это не FOB-экспортная цена. Показаны только месяцы, опубликованные в двух выпусках NASS.",
+      "observations": [
+        {
+          "period": "2024-12",
+          "value": 158.953,
+          "originalValue": 7.21,
+          "originalUnit": "USD/cwt",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "status": "official_published_estimate_at_source_vintage",
+          "sourceId": "nass_jan26",
+          "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+          "sourcePage": 7
+        },
+        {
+          "period": "2025-04",
+          "value": 167.551,
+          "originalValue": 7.6,
+          "originalUnit": "USD/cwt",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "status": "official_published_estimate_at_source_vintage",
+          "sourceId": "nass_may26",
+          "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+          "sourcePage": 7
+        },
+        {
+          "period": "2025-11",
+          "value": 133.38,
+          "originalValue": 6.05,
+          "originalUnit": "USD/cwt",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "status": "official_published_estimate_at_source_vintage",
+          "sourceId": "nass_jan26",
+          "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+          "sourcePage": 7
+        },
+        {
+          "period": "2025-12",
+          "value": 133.159,
+          "originalValue": 6.04,
+          "originalUnit": "USD/cwt",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "status": "official_published_estimate_at_source_vintage",
+          "sourceId": "nass_jan26",
+          "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
+          "sourcePage": 7
+        },
+        {
+          "period": "2026-03",
+          "value": 152.78,
+          "originalValue": 6.93,
+          "originalUnit": "USD/cwt",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "status": "official_published_estimate_at_source_vintage",
+          "sourceId": "nass_may26",
+          "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+          "sourcePage": 7
+        },
+        {
+          "period": "2026-04",
+          "value": 148.371,
+          "originalValue": 6.73,
+          "originalUnit": "USD/cwt",
+          "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
+          "status": "official_published_estimate_at_source_vintage",
+          "sourceId": "nass_may26",
+          "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
+          "sourcePage": 7
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "texas_fob_available_weekly_mids_monthly_mean",
-   "label": "Texas FOB, среднее по доступным неделям за месяц",
-   "unit": "USD/т (метрическая тонна)",
-   "frequency": "monthly",
-   "kind": "derived",
-   "description": "Производный ряд: среднее арифметическое доступных недельных mid-котировок за месяц. Не независимое измерение и не среднемесячная цена по дням.",
-   "observations": [
+  ],
+  "excluded": [
     {
-     "period": "2026-01",
-     "value": 222.5,
-     "measurementCount": 1,
-     "inputDates": [
-      "2026-01-31"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas",
-     "coverageCaveat": "Only one available January observation"
+      "id": "pride_ag_milo_monthly",
+      "label": "Pride Ag, цена MILO (месячная)",
+      "sourceId": "pride_ag",
+      "periodStart": "2021-01",
+      "periodEnd": "2025-08",
+      "count": 56,
+      "reason": "Единица измерения в извлечённой таблице не указана (USD/бушель — лишь гипотеза). Нормализация не выполнялась, на график не выводится. Значения не скопированы."
     },
     {
-     "period": "2026-02",
-     "value": 226.75,
-     "measurementCount": 4,
-     "inputDates": [
-      "2026-02-07",
-      "2026-02-14",
-      "2026-02-21",
-      "2026-02-28"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "period": "2026-03",
-     "value": 238.75,
-     "measurementCount": 4,
-     "inputDates": [
-      "2026-03-07",
-      "2026-03-14",
-      "2026-03-21",
-      "2026-03-28"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "period": "2026-04",
-     "value": 225.625,
-     "measurementCount": 4,
-     "inputDates": [
-      "2026-04-04",
-      "2026-04-11",
-      "2026-04-18",
-      "2026-04-25"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "period": "2026-05",
-     "value": 232.9,
-     "measurementCount": 5,
-     "inputDates": [
-      "2026-05-02",
-      "2026-05-09",
-      "2026-05-16",
-      "2026-05-22",
-      "2026-05-30"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "period": "2026-06",
-     "value": 215.25,
-     "measurementCount": 4,
-     "inputDates": [
-      "2026-06-06",
-      "2026-06-13",
-      "2026-06-20",
-      "2026-06-27"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "period": "2026-07",
-     "value": 227.25,
-     "measurementCount": 4,
-     "inputDates": [
-      "2026-07-04",
-      "2026-07-11",
-      "2026-07-18",
-      "2026-07-25"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
-    },
-    {
-     "period": "2026-08",
-     "value": 240.1,
-     "measurementCount": 5,
-     "inputDates": [
-      "2026-08-01",
-      "2026-08-08",
-      "2026-08-15",
-      "2026-08-22",
-      "2026-08-29"
-     ],
-     "method": "arithmetic_mean_of_available_weekly_mids_not_daily_monthly_average",
-     "status": "derived_from_published_indicative_quotes",
-     "sourceId": "most_agro",
-     "sourceUrl": "https://most-agro.com/prices/history/ref-sorghum-texas"
+      "id": "ycharts_imf_sorghum_reported_values",
+      "label": "YCharts (перепубликация IMF), US Sorghum Price",
+      "sourceId": "ycharts",
+      "periodStart": "2022-06",
+      "periodEnd": "2026-07",
+      "count": 50,
+      "reason": "Карантин: заявленная единица USD/mt, но масштаб значений не подтверждён независимо. Не используется и не пересчитывается. Значения не скопированы."
     }
-   ]
-  },
-  {
-   "id": "us_nass_sorghum_farm_price_monthly",
-   "label": "США, цена, полученная фермерами (USDA NASS)",
-   "unit": "USD/т (метрическая тонна), пересчёт из USD/cwt",
-   "frequency": "monthly",
-   "kind": "source",
-   "description": "Месячные цены, полученные фермерами США за зерно сорго; это не FOB-экспортная цена. Показаны только месяцы, опубликованные в двух выпусках NASS.",
-   "observations": [
-    {
-     "period": "2024-12",
-     "value": 158.953,
-     "originalValue": 7.21,
-     "originalUnit": "USD/cwt",
-     "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
-     "status": "official_published_estimate_at_source_vintage",
-     "sourceId": "nass_jan26",
-     "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
-     "sourcePage": 7
-    },
-    {
-     "period": "2025-04",
-     "value": 167.551,
-     "originalValue": 7.6,
-     "originalUnit": "USD/cwt",
-     "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
-     "status": "official_published_estimate_at_source_vintage",
-     "sourceId": "nass_may26",
-     "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
-     "sourcePage": 7
-    },
-    {
-     "period": "2025-11",
-     "value": 133.38,
-     "originalValue": 6.05,
-     "originalUnit": "USD/cwt",
-     "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
-     "status": "official_published_estimate_at_source_vintage",
-     "sourceId": "nass_jan26",
-     "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
-     "sourcePage": 7
-    },
-    {
-     "period": "2025-12",
-     "value": 133.159,
-     "originalValue": 6.04,
-     "originalUnit": "USD/cwt",
-     "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
-     "status": "official_published_estimate_at_source_vintage",
-     "sourceId": "nass_jan26",
-     "sourceUrl": "https://esmis.nal.usda.gov/sites/default/release-files/795747/agpr0126.pdf",
-     "sourcePage": 7
-    },
-    {
-     "period": "2026-03",
-     "value": 152.78,
-     "originalValue": 6.93,
-     "originalUnit": "USD/cwt",
-     "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
-     "status": "official_published_estimate_at_source_vintage",
-     "sourceId": "nass_may26",
-     "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
-     "sourcePage": 7
-    },
-    {
-     "period": "2026-04",
-     "value": 148.371,
-     "originalValue": 6.73,
-     "originalUnit": "USD/cwt",
-     "normalizationMethod": "value * 1000 / (100 * 0.45359237); arithmetic unit conversion only",
-     "status": "official_published_estimate_at_source_vintage",
-     "sourceId": "nass_may26",
-     "sourceUrl": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/agpr0526.pdf",
-     "sourcePage": 7
-    }
-   ]
-  }
- ],
- "excluded": [
-  {
-   "id": "pride_ag_milo_monthly",
-   "label": "Pride Ag, цена MILO (месячная)",
-   "sourceId": "pride_ag",
-   "periodStart": "2021-01",
-   "periodEnd": "2025-08",
-   "count": 56,
-   "reason": "Единица измерения в извлечённой таблице не указана (USD/бушель — лишь гипотеза). Нормализация не выполнялась, на график не выводится. Значения не скопированы."
-  },
-  {
-   "id": "ycharts_imf_sorghum_reported_values",
-   "label": "YCharts (перепубликация IMF), US Sorghum Price",
-   "sourceId": "ycharts",
-   "periodStart": "2022-06",
-   "periodEnd": "2026-07",
-   "count": 50,
-   "reason": "Карантин: заявленная единица USD/mt, но масштаб значений не подтверждён независимо. Не используется и не пересчитывается. Значения не скопированы."
-  }
- ]
+  ]
 }
