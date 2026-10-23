@@ -17,6 +17,12 @@
           "pageId": "agro"
         },
         {
+          "label": "Как сопровождать агроопыт",
+          "url": "/agro-support/",
+          "icon": "bi-signpost-split",
+          "pageId": "agro-support"
+        },
+        {
           "label": "Экономическая модель 2026",
           "url": "/agro-economics/",
           "icon": "bi-calculator",
@@ -181,6 +187,10 @@
           "url": "/"
         },
         {
+          "label": "Как сопровождать агроопыт",
+          "url": "/agro-support/"
+        },
+        {
           "label": "Экономическая модель 2026",
           "url": "/agro-economics/"
         },
@@ -306,6 +316,32 @@
           "label": "Аргентина 2026",
           "url": "/mission/argentina-2026/",
           "hideAfterKey": "argentinaMission"
+        }
+      ]
+    },
+    "agro-support": {
+      "heading": "Навигация",
+      "icon": "bi-link-45deg",
+      "links": [
+        {
+          "label": "Главная",
+          "url": "/"
+        },
+        {
+          "label": "Путь опыта",
+          "url": "#path"
+        },
+        {
+          "label": "Цифровая тень",
+          "url": "#shadow"
+        },
+        {
+          "label": "Научная статья",
+          "url": "#article"
+        },
+        {
+          "label": "Как работать с нами",
+          "url": "#offers"
         }
       ]
     }

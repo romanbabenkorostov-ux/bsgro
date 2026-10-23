@@ -1,0 +1,220 @@
+---
+layout: base.njk
+pageId: "agro-support"
+pageTitle: "BSGRO — Как сопровождать агроопыт"
+pageDescription: "Как сопровождать агроопыт: гипотеза, главный исход и MDD, учётная полоса, данные, проверка готовности, человекочитаемая и машиночитаемая цифровая тень. Программа и сопровождение — цена по запросу."
+footerGroup: "agro-support"
+permalink: "/agro-support/"
+---
+
+<section class="hero" style="padding:5rem 0 3rem; background: linear-gradient(135deg, #061D33 0%, #1B5E20 40%, #4E342E 100%); color:#fff;">
+  <div class="container">
+    <nav aria-label="breadcrumb"><ol class="breadcrumb mb-2" style="background:transparent;padding:0;"><li class="breadcrumb-item"><a href="/" style="color:var(--clr-lime);">Главная</a></li><li class="breadcrumb-item"><a href="/agro/" style="color:var(--clr-lime);">Возможные агроэксперименты</a></li><li class="breadcrumb-item active" style="color:rgba(255,255,255,0.7);">Как сопровождать агроопыт</li></ol></nav>
+    <h1 style="color:#fff;">Как сопровождать агроопыт</h1>
+    <p class="lead" style="color:rgba(255,255,255,0.9);">Чтобы опыт ответил на Ваш вопрос, доказательность закладывается до первого измерения, а результат сохраняется и для людей, и для машинного обучения</p>
+  </div>
+</section>
+
+<!-- ===== #why ===== -->
+<section id="why">
+  <div class="container">
+    <h2 class="section-title fade-up">Почему опыт часто не отвечает на вопрос</h2>
+    <p class="section-subtitle fade-up">Разбор отчёта о полевом опыте прошлого сезона: лабораторных данных много, но вывод сделать нельзя. Причины типичные.</p>
+    <div class="row g-4">
+      {% set reasons = [
+        ["bi-question-circle", "Нет проверяемой гипотезы", "и единственного главного исхода — непонятно, по какому показателю принимать решение."],
+        ["bi-sliders", "Мощность не оценена", "три повторности не различают эффект меньше ~20 % — а ждут 5–10 %."],
+        ["bi-shuffle", "Варианты стоят систематически", "эффект места (почвы, рельефа) принимают за эффект варианта."],
+        ["bi-droplet-half", "Нет фактической дозы", "номинальная доза варианта — не факт; внесение по делянке не записано."],
+        ["bi-bounding-box", "Нет учётной площади", "в урожай попадают края делянки и развороты техники."],
+        ["bi-calculator", "План анализа — после данных", "статистику подбирают под результат."]
+      ] %}
+      {% for r in reasons %}
+      <div class="col-md-6 col-lg-4 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid var(--clr-terra);">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi {{ r[0] }} me-2" style="color:var(--clr-terra);"></i>{{ r[1] }}</h5>
+          <p class="small mb-0">{{ r[2] }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===== #path ===== -->
+<section id="path" style="background:var(--clr-bg-alt);">
+  <div class="container">
+    <h2 class="section-title fade-up">Путь опыта</h2>
+    <div class="risk-pipeline fade-up">
+      <div class="risk-node" style="border-top-color: var(--clr-green);">
+        <h5><i class="bi bi-lightbulb me-1"></i> 1. Гипотеза</h5>
+        <ul><li>цепочка «воздействие → механизм → растение → урожай»</li><li>одна подтверждающая, остальные поисковые</li></ul>
+      </div>
+      <div class="risk-arrow d-none d-md-flex">→</div>
+      <div class="risk-node" style="border-top-color: var(--clr-lime);">
+        <h5><i class="bi bi-bullseye me-1"></i> 2. Исход и MDD</h5>
+        <ul><li>главный исход — урожай при 14 %</li><li>MDD до опыта: какой эффект опыт увидит</li></ul>
+      </div>
+      <div class="risk-arrow d-none d-md-flex">→</div>
+      <div class="risk-node" style="border-top-color: var(--clr-blue);">
+        <h5><i class="bi bi-grid-3x3 me-1"></i> 3. Дизайн</h5>
+        <ul><li>варианты и факторы, повторности</li><li>рандомизация, блоки поперёк градиента</li><li>учётная полоса по ширине жатки</li></ul>
+      </div>
+      <div class="risk-arrow d-none d-md-flex">→</div>
+      <div class="risk-node" style="border-top-color: var(--clr-terra);">
+        <h5><i class="bi bi-database-check me-1"></i> 4. Данные</h5>
+        <ul><li>фон по каждой делянке</li><li>фактическая доза, учёты, урожай</li><li>погода и спутник без датчиков</li></ul>
+      </div>
+      <div class="risk-arrow d-none d-md-flex">→</div>
+      <div class="risk-node" style="border-top-color: var(--clr-navy);">
+        <h5><i class="bi bi-traffic-light me-1"></i> 5. Готовность</h5>
+        <ul><li>32 проверки PASS / WARN / BLOCK</li><li>до уборки — пока можно исправить</li></ul>
+      </div>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-lg-6 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid var(--clr-green);">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi bi-rulers me-2" style="color:var(--clr-green);"></i>Учётная полоса</h5>
+          <p class="small mb-0">Урожай убирают и пробы отбирают только с полосы шириной жатки комбайна (например, 7 м) по оси делянки, не доходя до торцов (например, 3,5 м). Узкая боковая защитка — предупреждение; точка отбора вне полосы — отметка качества, а не перенос координат.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid var(--clr-blue);">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi bi-percent me-2" style="color:var(--clr-blue);"></i>Минимально обнаружимая разница</h5>
+          <p class="small mb-0">При вариации урожая между делянками 8 %, трёх повторностях и шести вариантах опыт надёжно различает прибавку не меньше 20 %. Если ждёте меньший эффект — нужно больше повторностей или площадок, иначе вывод будет только поисковым.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== #data ===== -->
+<section id="data">
+  <div class="container">
+    <h2 class="section-title fade-up">Какие данные нужны</h2>
+    <p class="section-subtitle fade-up">Без датчиков влаги, метеостанций и полётов БПЛА: среда опыта — из реанализа погоды, спутника и цифровой модели рельефа.</p>
+    <div class="row g-4">
+      {% set groups = [
+        ["bi-map", "var(--clr-green)", "Опыт", "контуры делянок KMZ / GeoJSON, схема и протокол, техкарта и проходы техники с затратами"],
+        ["bi-eyedropper", "var(--clr-blue)", "Почва и растение", "ведомости лаборатории, фактическое внесение по делянке, учёты растений, урожай, фото и фаза BBCH"],
+        ["bi-cloud-sun", "var(--clr-lime)", "Среда", "суточная погода ERA5 / ERA5-Land, индексы Sentinel-2 по делянкам, рельеф DEM, SoilGrids"],
+        ["bi-layers", "var(--clr-terra)", "Контекст", "почвенная карта и разрезы, туры агрохимобследования, история поля, партии материалов"]
+      ] %}
+      {% for g in groups %}
+      <div class="col-md-6 col-lg-3 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid {{ g[1] }};">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi {{ g[0] }} me-2" style="color:{{ g[1] }};"></i>{{ g[2] }}</h5>
+          <p class="small mb-0">{{ g[3] }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="small mt-3 fade-up">У каждого значения указано происхождение: измерено, запланировано, модель, спутник, вычислено или перенесено из документа.</p>
+  </div>
+</section>
+
+<!-- ===== #example ===== -->
+<section id="example" style="background:var(--clr-bg-alt);">
+  <div class="container">
+    <h2 class="section-title fade-up">Пример: опыт с почвоулучшителями</h2>
+    <div class="row g-4">
+      <div class="col-lg-5 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid var(--clr-green);">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi bi-flower1 me-2" style="color:var(--clr-green);"></i>Озимая пшеница, Ростовская область</h5>
+          <ul class="small mb-0">
+            <li>18 делянок, 6 вариантов × 3 повторности</li>
+            <li>факторы: смесь биочара с биогумусом, биопрепарат, бентонит</li>
+            <li>главный исход — урожайность при 14 % влажности, MDD 20,1 %</li>
+            <li>учётные полосы 7 м с отступом 3,5 м от торцов</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-7 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid var(--clr-terra);">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi bi-traffic-light me-2" style="color:var(--clr-terra);"></i>Что показала проверка готовности — ещё до уборки</h5>
+          <p class="small">Итог: <strong>не готов к выводу</strong> — 18 проверок пройдено, 11 предупреждений, 3 блокировки:</p>
+          <ul class="small mb-0">
+            <li>размещение вариантов систематическое, без рандомизации;</li>
+            <li>фактическая доза по делянкам не записана;</li>
+            <li>контроль чаще лежит на песчаном контуре почвенной карты — без ковариаты почвы эффект смешан с местом.</li>
+          </ul>
+          <p class="small mt-2 mb-0">Дозу и ковариату почвы ещё можно записать до уборки — это и есть смысл сопровождения.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== #shadow ===== -->
+<section id="shadow">
+  <div class="container">
+    <h2 class="section-title fade-up">Цифровая тень опыта — в двух формах</h2>
+    <div class="row g-4">
+      <div class="col-lg-6 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid var(--clr-blue);">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi bi-filetype-html me-2" style="color:var(--clr-blue);"></i>Человекочитаемая</h5>
+          <p class="small">Одна HTML-страница кейса, открывается без интернета: карта делянок и учётных полос, протокол и готовность, анализы, погода и снимки, фото и фазы, техкарта, смета, экономика. У каждого блока — выгрузка xlsx; страница подписана.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 fade-up">
+        <div class="card-custom p-4 h-100" style="border-left:4px solid var(--clr-navy);">
+          <h5 style="color:var(--clr-navy);font-size:1rem;"><i class="bi bi-diagram-3 me-2" style="color:var(--clr-navy);"></i>Машиночитаемая</h5>
+          <p class="small mb-0">Комплект для данных и машинного обучения: канон JSON со схемой, граф сущностей и связей, GeoJSON, таблицы признаков «делянка × сезон» и «делянка × дата» с контрактом колонок, онтология и данные в RDF, отчёт качества, манифест контрольных сумм. Одинаковые данные — одинаковые файлы; персональных данных нет.</p>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive mt-4 fade-up">
+      <table class="table table-sm small align-middle">
+        <thead><tr><th></th><th>Цифровая тень опыта</th><th>Цифровой двойник почв</th></tr></thead>
+        <tbody>
+          <tr><th>Что это</th><td>запись опыта</td><td>модель почвы и отклика растений</td></tr>
+          <tr><th>Источник</th><td>один опыт: измерения, документы, среда</td><td>датасет многих опытов и знания о процессах</td></tr>
+          <tr><th>Время</th><td>прошлое и настоящее</td><td>прогноз и сценарии</td></tr>
+          <tr><th>Вопрос</th><td>что произошло и можно ли этому верить</td><td>что будет при другой технологии, погоде, почве</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fade-up">Тени многих опытов — площадки × годы × технологии — с общей онтологией складываются в датасет. На нём обучаются модели отклика урожая и почвы на технологию при местной погоде и почве. Проверенная на новых площадках модель становится основой цифрового двойника: реакцию растений моделируют на двойнике, а в поле закладывают только опыты, которые уточняют модель.</p>
+  </div>
+</section>
+
+<!-- ===== #article ===== -->
+<section id="article" style="background:var(--clr-bg-alt);">
+  <div class="container">
+    <h2 class="section-title fade-up">Научная статья</h2>
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8 fade-up">
+        <h5 style="color:var(--clr-navy);">Сопровождение агроопытов с получением человекочитаемой и машиночитаемой цифровой тени</h5>
+        <p class="small mb-0">Порядок сопровождения, при котором протокол, учётная площадь и все данные опыта ведутся в единой базе, а результат выпускается для людей и для машин. Проверка готовности до уборки, структура датасета, онтология, отличие тени от цифрового двойника почв и путь от накопления теней к двойнику.</p>
+      </div>
+      <div class="col-lg-4 fade-up text-lg-end">
+        <a class="btn btn-success" href="/assets/docs/agro-support-digital-shadow.docx" download><i class="bi bi-file-earmark-word me-2"></i>Скачать docx</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== #offers ===== -->
+<section id="offers">
+  <div class="container">
+    <h2 class="section-title fade-up">Как работать с нами</h2>
+    <div class="row g-4">
+      {% for o in site.offers %}
+      <div class="col-lg-6 fade-up">
+        <div class="card-custom p-4 h-100 d-flex flex-column" style="border-left:4px solid {% if loop.first %}var(--clr-blue){% else %}var(--clr-green){% endif %};">
+          <h5 style="color:var(--clr-navy);"><i class="bi {{ o.icon }} me-2" style="color:var(--clr-green);"></i>{{ o.title }}</h5>
+          <p class="small">{{ o.lead }}</p>
+          <ul class="small">
+            {% for it in o.items %}<li>{{ it }}</li>{% endfor %}
+          </ul>
+          <div class="mt-auto d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <strong style="color:var(--clr-navy);">{% if o.price %}{{ o.price }} руб.{% else %}Цена по запросу{% endif %}</strong>
+            <a class="btn btn-outline-success btn-sm" href="mailto:{{ site.contact.email }}?subject={{ o.subject | urlencode }}">Запросить</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="mt-4 fade-up">Опишите культуру, технологию и вопрос — предложим гипотезы, главный исход, MDD и схему опыта: <a href="/#contacts" style="color:var(--clr-green);font-weight:600;">контакты</a>.</p>
+  </div>
+</section>
